@@ -16,7 +16,7 @@
     "qrcode-generator": "^2.0.4",
     "tailwindcss": "^4.1.12"
   },
-  "homepage": "https://username.github.io/barbook",
+  "homepage": "https://mfortman11.github.io/barbooks",
   "devDependencies": {
     "@types/node": "^24.3.0",
     "typescript": "^5.9.2"
