@@ -20,7 +20,7 @@ const { page } = Astro.params;
 const pageNumber: number = parseInt(page as string);
 
 if (!pageConfig.pageExists(pageNumber)) {
-  return Astro.redirect('/barbook/1/');
+  return Astro.redirect('/barbooks/1/');
 }
 
 const pageConfiguration: PageConfiguration = pageConfig.getPageConfiguration(pageNumber);

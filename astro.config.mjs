@@ -5,8 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://username.github.io',
-  base: '/barbook',
+  site: 'https://mfortman11.github.io',
+  base: '/barbooks',
   output: 'static',
   build: {
     assets: 'assets'

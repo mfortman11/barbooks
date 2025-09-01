@@ -37,7 +37,7 @@ class BookApp {
       goBtn.addEventListener('click', () => {
         const pageNum = parseInt(pageInput.value);
         if (pageNum && pageNum >= 1 && pageNum <= this.totalPages) {
-          window.location.href = `/barbook/${pageNum}/`;
+          window.location.href = `/barbooks/${pageNum}/`;
           pageInput.value = '';
         }
       });
@@ -60,7 +60,7 @@ class BookApp {
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
         if (this.currentPage > 1) {
-          window.location.href = `/barbook/${this.currentPage - 1}/`;
+          window.location.href = `/barbooks/${this.currentPage - 1}/`;
         }
       });
     }
@@ -68,7 +68,7 @@ class BookApp {
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
         if (this.currentPage < this.totalPages) {
-          window.location.href = `/barbook/${this.currentPage + 1}/`;
+          window.location.href = `/barbooks/${this.currentPage + 1}/`;
         }
       });
     }
