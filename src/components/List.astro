@@ -1,0 +1,76 @@
+---
+import type { ListItem } from '../utils/pageTypes.js';
+
+interface Props {
+  title: string;
+  description?: string;
+  items: ListItem[];
+  columns?: number;
+  showInstructions?: boolean;
+  instructionText?: string;
+}
+
+const { 
+  title, 
+  description, 
+  items, 
+  columns = 2, 
+  showInstructions = true,
+  instructionText = "Fill in each blank line with the correct answer. This page is designed to be printed and completed by hand."
+} = Astro.props as Props;
+
+// Validate that items array is not empty
+if (!items || items.length === 0) {
+  throw new Error('List component requires at least one item');
+}
+
+// Helper function to get the clue text for an item
+function getClueText(item: ListItem, index: number): string {
+  // Priority: clue > year > label > auto-number
+  if (item.clue !== undefined) {
+    return `${item.clue}`;
+  }
+  if (item.year !== undefined) {
+    return `${item.year}`;
+  }
+  if (item.label !== undefined) {
+    return item.label;
+  }
+  return `${index + 1}.`;
+}
+---
+
+<div class="max-w-4xl mx-auto">
+  <h3 class="text-xl font-bold mb-4 text-center print:text-black print:text-lg">{title}</h3>
+  
+  {description && (
+    <p class="mb-4 text-sm text-gray-600 print:text-black print:mb-3 print:text-xs">{description}</p>
+  )}
+  
+  <div class={`grid gap-x-8 gap-y-3 print:gap-y-2`} style={`grid-template-columns: repeat(${columns}, 1fr)`}>
+    {items.map((item, index) => (
+      <div class="flex items-center">
+        <span class="font-bold text-gray-800 print:text-black w-16 text-sm print:text-xs flex-shrink-0">
+          {getClueText(item, index)}:
+        </span>
+        <div class="flex-1 border-b border-gray-300 print:border-black ml-2 h-5 print:h-4"></div>
+        {item.hasNote && (
+          <span class="text-xs text-gray-500 print:text-black ml-1">*</span>
+        )}
+      </div>
+    ))}
+  </div>
+  
+  {(items.some(item => item.hasNote) || showInstructions) && (
+    <div class="mt-4 text-xs text-gray-500 print:text-black print:text-xs">
+      {items.some(item => item.hasNote) && items.find(item => item.noteText) && (
+        <p><strong>*Note:</strong> {items.find(item => item.noteText)?.noteText}</p>
+      )}
+      {showInstructions && (
+        <p class={items.some(item => item.hasNote) ? "mt-1" : ""}>
+          <strong>Instructions:</strong> {instructionText}
+        </p>
+      )}
+    </div>
+  )}
+</div>
