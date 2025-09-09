@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import List from '../components/List.astro';
+import Matchup from '../components/Matchup.astro';
 import ActionContent from '../components/ActionContent.astro';
 import { pageConfig } from '../utils/pageConfig.js';
 import type { GetStaticPaths } from 'astro';
@@ -43,6 +44,17 @@ const title: string = `Book Reader - Page ${pageNumber}`;
     <div class="prose prose-lg max-w-none">
       {pageConfiguration.type === 'list' && (
         <List 
+          title={pageConfiguration.title}
+          description={pageConfiguration.description}
+          items={pageConfiguration.items}
+          columns={pageConfiguration.columns}
+          showInstructions={pageConfiguration.showInstructions}
+          instructionText={pageConfiguration.instructionText}
+        />
+      )}
+      
+      {pageConfiguration.type === 'matchup' && (
+        <Matchup 
           title={pageConfiguration.title}
           description={pageConfiguration.description}
           items={pageConfiguration.items}

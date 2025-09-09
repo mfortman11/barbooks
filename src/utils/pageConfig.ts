@@ -107,6 +107,46 @@ export const pageConfig: PageConfig = {
       ],
       columns: 2,
       answerKeyUrl: "https://example.com/math-answers"
+    },
+    8: {
+      type: 'matchup',
+      title: 'Last 10 NFC Championship Games',
+      description: 'Fill in the teams that played in each NFC Championship game.',
+      items: [
+        { centerText: 'vs', context: '2024' },
+        { centerText: 'vs', context: '2023' },
+        { centerText: 'vs', context: '2022' },
+        { centerText: 'vs', context: '2021' },
+        { centerText: 'vs', context: '2020' },
+        { centerText: 'vs', context: '2019' },
+        { centerText: 'vs', context: '2018' },
+        { centerText: 'vs', context: '2017' },
+        { centerText: 'vs', context: '2016' },
+        { centerText: 'vs', context: '2015' }
+      ],
+      columns: 2,
+      answerKeyUrl: "https://www.pro-football-reference.com/years/2024/playoffs.htm"
+    },
+    9: {
+      type: 'matchup',
+      title: 'Super Bowl Matchups by Score',
+      description: 'Name the teams that played in these Super Bowls based on the final score.',
+      items: [
+        { centerText: '31-17', context: 'Super Bowl LVIII (2024)' },
+        { centerText: '38-35', context: 'Super Bowl LVII (2023)' },
+        { centerText: '23-20', context: 'Super Bowl LVI (2022)' },
+        { centerText: '31-9', context: 'Super Bowl LV (2021)' },
+        { centerText: '31-20', context: 'Super Bowl LIV (2020)' },
+        { centerText: '13-3', context: 'Super Bowl LIII (2019)' }
+      ],
+      columns: 1,
+      answerKeyUrl: "https://www.pro-football-reference.com/super-bowl/",
+      actionContent: {
+        content: "Some of these were nail-biters, others were blowouts!",
+        position: 'right',
+        rotation: -2,
+        icon: '🏆'
+      }
     }
   },
   

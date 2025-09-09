@@ -15,7 +15,7 @@ const { totalPages = 100, currentPage = 1 } = Astro.props as Props;
         <div class="flex space-x-2">
           {[1, 2, 3, 4, 5].map(pageNum => (
             <a 
-              href={`/barbook/${pageNum}/`} 
+              href={`/barbooks/${pageNum}/`} 
               class={`page-link transition-colors duration-200 ${
                 currentPage === pageNum 
                   ? 'text-blue-200 font-semibold' 

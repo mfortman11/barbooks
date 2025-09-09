@@ -1,5 +1,5 @@
 // Define different page types
-export type PageType = 'list' | 'text' | 'custom';
+export type PageType = 'list' | 'text' | 'custom' | 'matchup';
 
 export interface ListItem {
   // Flexible clue - can be any string or number
@@ -17,6 +17,13 @@ export interface ActionContent {
   position?: 'left' | 'right';
   rotation?: number;
   icon?: string;
+}
+
+export interface MatchupItem {
+  // The central text/clue (e.g., "vs", "40-22", "2023 NFC Championship")
+  centerText: string;
+  // Optional additional context or year
+  context?: string | number;
 }
 
 export interface ListPageConfig {
@@ -45,4 +52,16 @@ export interface CustomPageConfig {
   actionContent?: ActionContent;
 }
 
-export type PageConfiguration = ListPageConfig | TextPageConfig | CustomPageConfig;
+export interface MatchupPageConfig {
+  type: 'matchup';
+  title: string;
+  description?: string;
+  items: MatchupItem[];
+  columns?: number;
+  showInstructions?: boolean;
+  instructionText?: string;
+  answerKeyUrl?: string;
+  actionContent?: ActionContent;
+}
+
+export type PageConfiguration = ListPageConfig | TextPageConfig | CustomPageConfig | MatchupPageConfig;

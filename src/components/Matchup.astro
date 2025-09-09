@@ -1,0 +1,73 @@
+---
+import type { MatchupItem } from '../utils/pageTypes.js';
+
+interface Props {
+  title: string;
+  description?: string;
+  items: MatchupItem[];
+  columns?: number;
+  showInstructions?: boolean;
+  instructionText?: string;
+}
+
+const { 
+  title, 
+  description, 
+  items, 
+  columns = 2, 
+  showInstructions = true,
+  instructionText = "Fill in the teams or participants for each matchup. This page is designed to be printed and completed by hand."
+} = Astro.props as Props;
+
+// Validate that items array is not empty
+if (!items || items.length === 0) {
+  throw new Error('Matchup component requires at least one item');
+}
+---
+
+<div class="max-w-4xl mx-auto">
+  <h3 class="text-xl font-bold mb-4 text-center print:text-black print:text-lg">{title}</h3>
+  
+  {description && (
+    <p class="mb-4 text-sm text-gray-600 print:text-black print:mb-3 print:text-xs">{description}</p>
+  )}
+  
+  <div class={`grid gap-x-6 gap-y-4 print:gap-y-3`} style={`grid-template-columns: repeat(${columns}, 1fr)`}>
+    {items.map((item, index) => (
+      <div class="border border-gray-200 print:border-black rounded-lg p-4 print:p-3 print:rounded-none">
+        {item.context && (
+          <div class="text-xs text-gray-500 print:text-black mb-2 font-medium">
+            {item.context}
+          </div>
+        )}
+        
+        <div class="flex items-center justify-between gap-3">
+          <!-- Left team/participant -->
+          <div class="flex-1">
+            <div class="border-b-2 border-gray-300 print:border-black h-6 print:h-5 w-full"></div>
+          </div>
+          
+          <!-- Center text (vs, score, etc.) -->
+          <div class="flex-shrink-0 px-2">
+            <span class="font-bold text-gray-700 print:text-black text-sm print:text-xs">
+              {item.centerText}
+            </span>
+          </div>
+          
+          <!-- Right team/participant -->
+          <div class="flex-1">
+            <div class="border-b-2 border-gray-300 print:border-black h-6 print:h-5 w-full"></div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+  
+  {showInstructions && (
+    <div class="mt-4 text-xs text-gray-500 print:text-black print:text-xs">
+      <p>
+        <strong>Instructions:</strong> {instructionText}
+      </p>
+    </div>
+  )}
+</div>

@@ -81,7 +81,7 @@ class BookApp {
     }
 
     const printFooter = document.createElement('div');
-    printFooter.className = 'print-footer hidden print:flex';
+    printFooter.className = 'print-footer hidden print:flex print:w-full print:max-w-[5in] print:justify-between print:mx-auto print:h-16 print:my-4 print:items-center';
     
     const answerUrl = this.answerKeyUrl;
     
@@ -97,10 +97,14 @@ class BookApp {
       qrDiv.className = 'qr-code';
       qrDiv.style.width = '40px';
       qrDiv.style.height = '40px';
+      qrDiv.className = 'pr-8';
       
-      printFooter.innerHTML = `
-        <span>Page ${pageNumber}</span>
-      `;
+      const leftSpan = document.createElement('span');
+      const centerSpan = document.createElement('span');
+      centerSpan.textContent = `Page ${pageNumber}`;
+      
+      printFooter.appendChild(leftSpan);
+      printFooter.appendChild(centerSpan);
       printFooter.appendChild(qrDiv);
     } catch (error) {
       console.error('QR Code generation failed:', error);
