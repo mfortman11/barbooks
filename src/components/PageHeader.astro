@@ -1,0 +1,16 @@
+---
+interface Props {
+  title?: string;
+  currentPage?: number;
+}
+
+const { title = "Book Page", currentPage = 1 } = Astro.props as Props;
+---
+
+<!-- Page header that appears on printed pages and book content -->
+<div class="page-header print:block hidden">
+  <div class="text-center mb-4">
+    <h1 class="text-xl font-bold">{title}</h1>
+    <div class="text-sm text-gray-600 mt-1">Page {currentPage}</div>
+  </div>
+</div>

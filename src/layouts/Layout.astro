@@ -1,7 +1,9 @@
 ---
 import '../styles/global.css';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import PageHeader from '../components/PageHeader.astro';
+import PageFooter from '../components/PageFooter.astro';
 
 interface Props {
   title: string;
@@ -19,67 +21,16 @@ const { title, currentPage = 1, totalPages = 100, answerKeyUrl } = Astro.props a
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{title}</title>
-  <style>
-    .screen-only {
-      display: flex;
-    }
-    
-    @media print {
-      .screen-only {
-        display: none !important;
-      }
-      
-      /* Print footer styles */
-      .print-footer {
-        position: fixed;
-        bottom: 0.5in;
-        left: 0;
-        right: 0;
-        display: flex !important;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 1in;
-        font-size: 12px;
-        color: black;
-      }
-      
-      .print-footer .qr-code {
-        width: 40px;
-        height: 40px;
-      }
-    }
-    
-    /* Hide print footer on screen */
-    .print-footer {
-      display: none;
-    }
-    
-    @media print {
-      .print-footer {
-        position: fixed;
-        bottom: 0.5in;
-        left: 0;
-        right: 0;
-        display: flex !important;
-        justify-content: space-between;
-        align-items: center;
-        padding: 0 1in;
-        font-size: 12px;
-        color: black;
-        background: none;
-        border: none;
-      }
-    }
-  </style>
 </head>
 <body class="bg-white min-h-screen flex flex-col">
   <div id="app">
-    <button class="fixed top-5 right-5 z-50 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm print:hidden" onclick="window.print()">Print Page</button>
-    <Header totalPages={totalPages} currentPage={currentPage} />
+    <SiteHeader totalPages={totalPages} currentPage={currentPage} />
+    <PageHeader title={title} currentPage={currentPage} />
     <main class="flex-1 container mx-auto px-4 py-8 print:p-8 print:m-0 print:max-w-none">
       <slot />
     </main>
-    <Footer currentPage={currentPage} totalPages={totalPages} />
+    <SiteFooter currentPage={currentPage} totalPages={totalPages} />
+    <PageFooter currentPage={currentPage} answerKeyUrl={answerKeyUrl} />
   </div>
   
   <script define:vars={{ currentPage, answerKeyUrl }}>

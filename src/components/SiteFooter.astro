@@ -11,29 +11,29 @@ const { currentPage = 1, totalPages = 100 } = Astro.props as Props;
   <div class="container mx-auto px-4 py-4">
     <div class="flex justify-between items-center">
       <p>&copy; 2024 Book Reader. All rights reserved.</p>
-      
+
       <!-- Center section for QR code (added by JS) and page number -->
       <div class="flex items-center space-x-4">
         <span class="text-gray-300 text-sm">Page {currentPage}</span>
       </div>
-      
+
       <div class="flex space-x-2">
-        <button 
-          id="prev-btn" 
+        <button
+          id="prev-btn"
           class={`px-4 py-2 rounded transition-colors duration-200 ${
-            currentPage <= 1 
-              ? 'bg-gray-400 cursor-not-allowed' 
+            currentPage <= 1
+              ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-blue-500 hover:bg-blue-600'
           }`}
           disabled={currentPage <= 1}
         >
           ← Previous
         </button>
-        <button 
-          id="next-btn" 
+        <button
+          id="next-btn"
           class={`px-4 py-2 rounded transition-colors duration-200 ${
-            currentPage >= totalPages 
-              ? 'bg-gray-400 cursor-not-allowed' 
+            currentPage >= totalPages
+              ? 'bg-gray-400 cursor-not-allowed'
               : 'bg-blue-500 hover:bg-blue-600'
           }`}
           disabled={currentPage >= totalPages}

@@ -1,0 +1,54 @@
+---
+interface Props {
+  currentPage?: number;
+  answerKeyUrl?: string;
+}
+
+const { currentPage = 1, answerKeyUrl } = Astro.props as Props;
+---
+
+<!-- Print footer that appears at bottom of printed pages -->
+<div class="print-footer">
+  <div class="page-info">
+    <span>Page {currentPage}</span>
+  </div>
+  <div class="qr-container">
+    <!-- QR code will be inserted here by JavaScript -->
+  </div>
+  <div class="answer-key-info">
+    <span class="text-xs">Scan for Answer Key</span>
+  </div>
+</div>
+
+<style>
+  .print-footer {
+    display: none;
+  }
+
+  @media print {
+    .print-footer {
+      position: fixed;
+      bottom: 0.5in;
+      left: 0;
+      right: 0;
+      display: flex !important;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 1in;
+      font-size: 12px;
+      color: black;
+      background: none;
+      border: none;
+    }
+
+    .qr-container {
+      display: flex;
+      justify-content: center;
+    }
+
+    .print-footer .qr-code {
+      width: 40px;
+      height: 40px;
+    }
+  }
+</style>

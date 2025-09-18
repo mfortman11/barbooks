@@ -17,7 +17,10 @@ class BookApp {
   private answerKeyUrl: string;
 
   constructor() {
-    this.currentPage = parseInt(window.location.pathname.split('/').pop() || '1');
+    // Parse current page from URL: /barbooks/3/ -> 3
+    const pathParts = window.location.pathname.split('/').filter(part => part !== '');
+    const pageParam = pathParts[pathParts.length - 1];
+    this.currentPage = parseInt(pageParam) || 1;
     this.answerKeyUrl = window.bookAppConfig?.answerKeyUrl || `https://example.com/page-${this.currentPage}-answers`;
     this.init();
   }

@@ -7,6 +7,8 @@ interface Props {
 const { totalPages = 100, currentPage = 1 } = Astro.props as Props;
 ---
 
+<button class="fixed top-5 right-5 z-50 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm print:hidden" onclick="window.print()">Print Page</button>
+
 <header class="bg-blue-600 text-white shadow-lg print:hidden">
   <div class="container mx-auto px-4 py-4">
     <h1 class="text-2xl font-bold">Book Reader</h1>
@@ -14,11 +16,11 @@ const { totalPages = 100, currentPage = 1 } = Astro.props as Props;
       <div class="flex items-center space-x-4">
         <div class="flex space-x-2">
           {[1, 2, 3, 4, 5].map(pageNum => (
-            <a 
-              href={`/barbooks/${pageNum}/`} 
+            <a
+              href={`/barbooks/${pageNum}/`}
               class={`page-link transition-colors duration-200 ${
-                currentPage === pageNum 
-                  ? 'text-blue-200 font-semibold' 
+                currentPage === pageNum
+                  ? 'text-blue-200 font-semibold'
                   : 'hover:text-blue-200'
               }`}
               data-page={pageNum}
@@ -27,11 +29,11 @@ const { totalPages = 100, currentPage = 1 } = Astro.props as Props;
             </a>
           ))}
           <span class="text-blue-200">...</span>
-          <a 
-            href={`/barbook/${totalPages}/`} 
+          <a
+            href={`/barbook/${totalPages}/`}
             class={`page-link transition-colors duration-200 ${
-              currentPage === totalPages 
-                ? 'text-blue-200 font-semibold' 
+              currentPage === totalPages
+                ? 'text-blue-200 font-semibold'
                 : 'hover:text-blue-200'
             }`}
             data-page={totalPages}
@@ -40,16 +42,16 @@ const { totalPages = 100, currentPage = 1 } = Astro.props as Props;
           </a>
         </div>
         <div class="ml-4">
-          <input 
-            type="number" 
-            id="page-input" 
-            min="1" 
+          <input
+            type="number"
+            id="page-input"
+            min="1"
             max={totalPages}
-            placeholder="Go to page..." 
+            placeholder="Go to page..."
             class="px-2 py-1 text-black rounded text-sm w-32"
           />
-          <button 
-            id="go-to-page-btn" 
+          <button
+            id="go-to-page-btn"
             class="ml-2 bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded text-sm"
           >
             Go
