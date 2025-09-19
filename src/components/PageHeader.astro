@@ -1,16 +1,37 @@
 ---
+import ActionContent from './ActionContent.astro';
+import type { ActionContent as ActionContentType } from '../utils/pageTypes.js';
+
 interface Props {
   title?: string;
   currentPage?: number;
+  pageTitle?: string;
+  pageDescription?: string;
+  actionContent?: ActionContentType;
 }
 
-const { title = "Book Page", currentPage = 1 } = Astro.props as Props;
+const { title = "Book Page", currentPage = 1, pageTitle, pageDescription, actionContent } = Astro.props as Props;
 ---
 
 <!-- Page header that appears on printed pages and book content -->
-<div class="page-header print:block hidden">
+<div class="page-header pt-20 relative">
+  {actionContent && (
+    <ActionContent
+      content={actionContent.content}
+      position={actionContent.position}
+      rotation={actionContent.rotation}
+      icon={actionContent.icon}
+    />
+  )}
+
   <div class="text-center mb-4">
-    <h1 class="text-xl font-bold">{title}</h1>
-    <div class="text-sm text-gray-600 mt-1">Page {currentPage}</div>
+    {pageTitle ? (
+      <h1 class="text-xl font-bold print:text-black print:text-lg">{pageTitle}</h1>
+    ) : (
+      <h1 class="text-xl font-bold">{title}</h1>
+    )}
+    {pageDescription && (
+      <p class="text-sm text-gray-600 print:text-black print:text-xs mt-2">{pageDescription}</p>
+    )}
   </div>
 </div>

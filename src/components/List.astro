@@ -2,21 +2,17 @@
 import type { ListItem } from '../utils/pageTypes.js';
 
 interface Props {
-  title: string;
-  description?: string;
   items: ListItem[];
   columns?: number;
   showInstructions?: boolean;
   instructionText?: string;
 }
 
-const { 
-  title, 
-  description, 
-  items, 
-  columns = 2, 
-  showInstructions = true,
-  instructionText = "Fill in each blank line with the correct answer. This page is designed to be printed and completed by hand."
+const {
+  items,
+  columns = 2,
+  showInstructions = false,
+  instructionText = ""
 } = Astro.props as Props;
 
 // Validate that items array is not empty
@@ -41,12 +37,6 @@ function getClueText(item: ListItem, index: number): string {
 ---
 
 <div class="max-w-4xl mx-auto">
-  <h3 class="text-xl font-bold mb-4 text-center print:text-black print:text-lg">{title}</h3>
-  
-  {description && (
-    <p class="mb-4 text-sm text-gray-600 print:text-black print:mb-3 print:text-xs">{description}</p>
-  )}
-  
   <div class={`grid gap-x-8 gap-y-3 print:gap-y-2`} style={`grid-template-columns: repeat(${columns}, 1fr)`}>
     {items.map((item, index) => (
       <div class="flex items-center">

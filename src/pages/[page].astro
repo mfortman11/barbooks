@@ -2,7 +2,6 @@
 import Layout from '../layouts/Layout.astro';
 import List from '../components/List.astro';
 import Matchup from '../components/Matchup.astro';
-import ActionContent from '../components/ActionContent.astro';
 import { pageConfig } from '../utils/pageConfig.js';
 import type { GetStaticPaths } from 'astro';
 import type { PageConfiguration } from '../utils/pageTypes.js';
@@ -29,34 +28,20 @@ const answerKeyUrl: string = pageConfig.getAnswerKeyUrl(pageNumber);
 const title: string = `Book Reader - Page ${pageNumber}`;
 ---
 
-<Layout title={title} currentPage={pageNumber} totalPages={pageConfig.totalPages} answerKeyUrl={answerKeyUrl}>
-  <div class="relative bg-white rounded-lg shadow-lg p-8 px-24 max-w-4xl mx-auto print:bg-transparent print:shadow-none print:p-10 print:max-w-none print:m-0 print:pb-16 print:px-32 print:rounded-none">
-    
-    {pageConfiguration.actionContent && (
-      <ActionContent
-        content={pageConfiguration.actionContent.content}
-        position={pageConfiguration.actionContent.position}
-        rotation={pageConfiguration.actionContent.rotation}
-        icon={pageConfiguration.actionContent.icon}
-      />
-    )}
-    
+<Layout title={title} currentPage={pageNumber} totalPages={pageConfig.totalPages} answerKeyUrl={answerKeyUrl} pageTitle={(pageConfiguration.type === 'list' || pageConfiguration.type === 'matchup') ? pageConfiguration.title : undefined} pageDescription={(pageConfiguration.type === 'list' || pageConfiguration.type === 'matchup') ? pageConfiguration.description : undefined} actionContent={pageConfiguration.actionContent}>
+  <div class="relative bg-white rounded-lg shadow-lg p-8 px-24 pt-2 max-w-4xl mx-auto print:bg-transparent print:shadow-none print:p-10 print:pt-0 print:max-w-none print:m-0 print:pb-16 print:px-32 print:rounded-none">
     <div class="prose prose-lg max-w-none">
       {pageConfiguration.type === 'list' && (
-        <List 
-          title={pageConfiguration.title}
-          description={pageConfiguration.description}
+        <List
           items={pageConfiguration.items}
           columns={pageConfiguration.columns}
           showInstructions={pageConfiguration.showInstructions}
           instructionText={pageConfiguration.instructionText}
         />
       )}
-      
+
       {pageConfiguration.type === 'matchup' && (
-        <Matchup 
-          title={pageConfiguration.title}
-          description={pageConfiguration.description}
+        <Matchup
           items={pageConfiguration.items}
           columns={pageConfiguration.columns}
           showInstructions={pageConfiguration.showInstructions}

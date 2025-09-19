@@ -4,15 +4,19 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import PageHeader from '../components/PageHeader.astro';
 import PageFooter from '../components/PageFooter.astro';
+import type { ActionContent } from '../utils/pageTypes.js';
 
 interface Props {
   title: string;
   currentPage?: number;
   totalPages?: number;
   answerKeyUrl?: string;
+  pageTitle?: string;
+  pageDescription?: string;
+  actionContent?: ActionContent;
 }
 
-const { title, currentPage = 1, totalPages = 100, answerKeyUrl } = Astro.props as Props;
+const { title, currentPage = 1, totalPages = 100, answerKeyUrl, pageTitle, pageDescription, actionContent } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -20,13 +24,13 @@ const { title, currentPage = 1, totalPages = 100, answerKeyUrl } = Astro.props a
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{title}</title>
+  <title class="print:hidden">{title}</title>
 </head>
 <body class="bg-white min-h-screen flex flex-col">
   <div id="app">
     <SiteHeader totalPages={totalPages} currentPage={currentPage} />
-    <PageHeader title={title} currentPage={currentPage} />
-    <main class="flex-1 container mx-auto px-4 py-8 print:p-8 print:m-0 print:max-w-none">
+    <PageHeader title={title} currentPage={currentPage} pageTitle={pageTitle} pageDescription={pageDescription} actionContent={actionContent} />
+    <main class="flex-1 container mx-auto px-4 print:p-8 print:pt-2 print:m-0 print:max-w-none">
       <slot />
     </main>
     <SiteFooter currentPage={currentPage} totalPages={totalPages} />

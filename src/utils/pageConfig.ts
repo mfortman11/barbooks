@@ -15,7 +15,7 @@ export const pageConfig: PageConfig = {
     1: {
       type: 'list',
       title: 'NFL MVP Challenge',
-      description: 'List the NFL Most Valuable Players (2000-2024). Write the player\'s name on each line.',
+      description: 'List the NFL Most Valuable Players (2000-2024).',
       items: Array.from({length: 25}, (_, i) => ({
         clue: 2024 - i,  // Using new flexible clue system
       })),
