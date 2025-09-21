@@ -2,7 +2,7 @@ import type { PageConfiguration } from './pageTypes.js';
 
 interface PageConfig {
   totalPages: number;
-  pages: Record<number, PageConfiguration>;
+  pages: PageConfiguration[];
   getPageConfiguration(pageNum: number): PageConfiguration;
   getAnswerKeyUrl(pageNum: number): string;
   pageExists(pageNum: number): boolean;
@@ -11,8 +11,8 @@ interface PageConfig {
 export const pageConfig: PageConfig = {
   totalPages: 100,
   
-  pages: {
-    1: {
+  pages: [
+    {
       type: 'list',
       title: 'NFL MVP Challenge',
       description: 'List the NFL Most Valuable Players (2000-2024).',
@@ -28,87 +28,66 @@ export const pageConfig: PageConfig = {
         icon: '🧠'
       }
     },
-    2: {
-      type: 'text',
-      content: "On the second page, our journey continues as we meet the protagonists and learn about their world filled with mystery and wonder.",
-      answerKeyUrl: "https://example.com/page-2-answers"
-    },
-    3: {
+    {
       type: 'list',
-      title: 'Top 10 Movies of All Time',
-      description: 'Name the top 10 movies according to IMDb rankings.',
+      title: 'NFL Defensive Player of the Year',
+      description: 'List the NFL Defensive Players of the Year (2015-2024).',
       items: Array.from({length: 10}, (_, i) => ({
-        clue: `#${i + 1}`  // Ranking numbers
+        clue: 2024 - i,
       })),
       columns: 1,
-      answerKeyUrl: "https://www.imdb.com/chart/top/"
+      answerKeyUrl: "https://www.pro-football-reference.com/awards/ap-defensive-player-of-the-year.htm"
     },
-    4: {
-      type: 'list', 
-      title: 'Chemical Elements',
-      description: 'Write the chemical symbol for each element.',
-      items: [
-        { clue: 'Hydrogen' },
-        { clue: 'Helium' },
-        { clue: 'Lithium' },
-        { clue: 'Beryllium' },
-        { clue: 'Boron' },
-        { clue: 'Carbon' },
-        { clue: 'Nitrogen' },
-        { clue: 'Oxygen' },
-        { clue: 'Fluorine' },
-        { clue: 'Neon' }
-      ],
-      columns: 2,
-      answerKeyUrl: "https://en.wikipedia.org/wiki/Periodic_table"
-    },
-    5: {
+    {
       type: 'list',
-      title: 'NBA Champions by Year',
-      description: 'List the NBA Championship winners from 2015-2024.',
+      title: 'NFL Offensive Rookie of the Year',
+      description: 'List the NFL Offensive Rookies of the Year (2015-2024).',
       items: Array.from({length: 10}, (_, i) => ({
-        clue: 2024 - i  // Years as numbers
+        clue: 2024 - i,
       })),
-      columns: 2,
-      answerKeyUrl: "https://www.basketball-reference.com/playoffs/"
+      columns: 1,
+      answerKeyUrl: "https://www.pro-football-reference.com/awards/ap-offensive-rookie-of-the-year-award.htm"
     },
-    6: {
+    {
       type: 'list',
-      title: 'World Capitals',
-      description: 'Write the capital city for each country.',
+      title: 'NFL Defensive Rookie of the Year',
+      description: 'List the NFL Defensive Rookies of the Year (2015-2024).',
+      items: Array.from({length: 10}, (_, i) => ({
+        clue: 2024 - i,
+      })),
+      columns: 1,
+      answerKeyUrl: "https://www.pro-football-reference.com/awards/ap-defensive-rookie-of-the-year-award.htm"
+    },
+    {
+      type: 'list',
+      title: 'NFL Comeback Player of the Year',
+      description: 'List the NFL Comeback Players of the Year (2015-2024).',
+      items: Array.from({length: 10}, (_, i) => ({
+        clue: 2024 - i,
+      })),
+      columns: 1,
+      answerKeyUrl: "https://www.pro-football-reference.com/awards/ap-comeback-player-award.htm"
+    },
+    {
+      type: 'matchup',
+      title: 'Last 10 AFC Championship Games',
+      description: 'Fill in the teams that played in each AFC Championship game.',
       items: [
-        { clue: 'France' },
-        { clue: 'Germany' },
-        { clue: 'Italy' },
-        { clue: 'Spain' },
-        { clue: 'Japan' },
-        { clue: 'Australia' },
-        { clue: 'Brazil' },
-        { clue: 'Canada' },
-        { clue: 'India' },
-        { clue: 'Egypt' }
+        { centerText: 'vs', context: '2024' },
+        { centerText: 'vs', context: '2023' },
+        { centerText: 'vs', context: '2022' },
+        { centerText: 'vs', context: '2021' },
+        { centerText: 'vs', context: '2020' },
+        { centerText: 'vs', context: '2019' },
+        { centerText: 'vs', context: '2018' },
+        { centerText: 'vs', context: '2017' },
+        { centerText: 'vs', context: '2016' },
+        { centerText: 'vs', context: '2015' }
       ],
       columns: 2,
-      answerKeyUrl: "https://www.countries-ofthe-world.com/capitals-of-the-world.html"
+      answerKeyUrl: "https://www.statmuse.com/nfl/ask/last-10-afc-championship-games"
     },
-    7: {
-      type: 'list',
-      title: 'Math Quiz',
-      description: 'Solve these mathematical expressions.',
-      items: [
-        { clue: '7 × 8' },
-        { clue: '144 ÷ 12' },
-        { clue: '15 + 27' },
-        { clue: '100 - 63' },
-        { clue: '9²' },
-        { clue: '√64' },
-        { clue: '25% of 80' },
-        { clue: '3³' }
-      ],
-      columns: 2,
-      answerKeyUrl: "https://example.com/math-answers"
-    },
-    8: {
+    {
       type: 'matchup',
       title: 'Last 10 NFC Championship Games',
       description: 'Fill in the teams that played in each NFC Championship game.',
@@ -125,9 +104,9 @@ export const pageConfig: PageConfig = {
         { centerText: 'vs', context: '2015' }
       ],
       columns: 2,
-      answerKeyUrl: "https://www.pro-football-reference.com/years/2024/playoffs.htm"
+      answerKeyUrl: "https://www.statmuse.com/nfl/ask/last-10-nfc-championship-games"
     },
-    9: {
+    {
       type: 'matchup',
       title: 'Super Bowl Matchups by Score',
       description: 'Name the teams that played in these Super Bowls based on the final score.',
@@ -147,12 +126,29 @@ export const pageConfig: PageConfig = {
         rotation: -2,
         icon: '🏆'
       }
+    },
+    {
+      type: 'list',
+      title: 'NFL All-Time Touchdown Leaders',
+      description: 'List the top 20 all-time NFL touchdown leaders.',
+      items: Array.from({length: 20}, (_, i) => ({
+        clue: `#${i + 1}`,
+      })),
+      columns: 1,
+      answerKeyUrl: "https://www.espn.com/nfl/history/leaders",
+      actionContent: {
+        content: "Only one active player is on this list!",
+        position: 'left',
+        rotation: 2,
+        icon: '🏃‍♂️'
+      }
     }
-  },
+  ],
   
   getPageConfiguration(pageNum: number): PageConfiguration {
-    if (this.pages[pageNum]) {
-      return this.pages[pageNum];
+    const pageIndex = pageNum - 1; // Convert 1-based page number to 0-based array index
+    if (pageIndex >= 0 && pageIndex < this.pages.length) {
+      return this.pages[pageIndex];
     }
     return {
       type: 'text',
