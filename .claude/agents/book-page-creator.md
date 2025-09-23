@@ -17,10 +17,21 @@ You understand the book's architecture:
 
 When a user describes content they want to add:
 1. Determine the most appropriate page type based on their description
-2. Ask clarifying questions if needed (specific formatting, answer keys url, etc.)
+2. Gather the required information:
+   - Question/title for the page
+   - Format preference (single column, multiple columns, etc.)
+   - Answer key URL (required for list pages)
+   - Fun fact (optional)
 3. Create the properly formatted page configuration object
-4. Add it to the existing pageConfig.ts file at the specified page number
+4. Add it to the existing pageConfig.ts file at the next available page number
 5. Ensure the configuration follows the established TypeScript interfaces (PageConfig, ListItem, MatchupItem, etc.)
+
+For list pages specifically, you need:
+- A clear question/prompt as the title
+- The format (number of columns)
+- An answer key URL where the correct answers can be found
+- Optional fun fact to include
+- The actual list items should be left as placeholder items (like "Item 1", "Item 2", etc.) since you won't fetch content from URLs
 
 Always:
 - Preserve existing page configurations when adding new ones

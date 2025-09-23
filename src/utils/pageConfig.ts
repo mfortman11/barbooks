@@ -142,6 +142,64 @@ export const pageConfig: PageConfig = {
         rotation: 2,
         icon: '🏃‍♂️'
       }
+    },
+    {
+      type: 'list',
+      title: 'Top 20 NFL Career Rushing Leaders',
+      description: 'List the top 20 all-time NFL career rushing leaders.',
+      items: Array.from({length: 20}, (_, i) => ({
+        clue: `#${i + 1}`,
+      })),
+      columns: 1,
+      answerKeyUrl: "https://www.pro-football-reference.com/leaders/rush_yds_career.htm",
+      actionContent: {
+        content: "There is one active player in this list",
+        position: 'right',
+        rotation: -1,
+        icon: '🏃‍♂️'
+      }
+    },
+    {
+      type: 'list',
+      title: 'Top 20 Single Season NFL Rushing Records',
+      description: 'List the top 20 single season NFL rushing records.',
+      items: Array.from({length: 20}, (_, i) => ({
+        clue: `#${i + 1}`,
+      })),
+      columns: 1,
+      answerKeyUrl: "https://www.pro-football-reference.com/leaders/rush_yds_single_season.htm",
+      actionContent: {
+        content: "2 RBs show up twice and there is a tie at #12",
+        position: 'left',
+        rotation: -3,
+        icon: '🏃‍♂️'
+      }
+    },
+    {
+      type: 'list',
+      title: 'Top 20 NFL Career Receiving Yards Leaders',
+      description: 'List the top 20 all-time NFL career receiving yards leaders.',
+      items: Array.from({length: 20}, (_, i) => ({
+        clue: `#${i + 1}`,
+      })),
+      columns: 1,
+      answerKeyUrl: "https://www.pro-football-reference.com/leaders/rec_yds_career.htm",
+      actionContent: {
+        content: "Only one active player",
+        position: 'right',
+        rotation: 2,
+        icon: '🏈'
+      }
+    },
+    {
+      type: 'list',
+      title: 'Top 20 Single Season NFL Receiving Yards Records',
+      description: 'List the top 20 single season NFL receiving yards records.',
+      items: Array.from({length: 20}, (_, i) => ({
+        clue: `#${i + 1}`,
+      })),
+      columns: 1,
+      answerKeyUrl: "https://www.pro-football-reference.com/leaders/rec_yds_single_season.htm"
     }
   ],
   
