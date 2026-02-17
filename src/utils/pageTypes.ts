@@ -65,3 +65,11 @@ export interface MatchupPageConfig {
 }
 
 export type PageConfiguration = ListPageConfig | TextPageConfig | CustomPageConfig | MatchupPageConfig;
+
+export interface PageConfig {
+  totalPages: number;
+  pages: PageConfiguration[];
+  getPageConfiguration(pageNum: number): PageConfiguration;
+  getAnswerKeyUrl(pageNum: number): string;
+  pageExists(pageNum: number): boolean;
+}

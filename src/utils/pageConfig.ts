@@ -1,16 +1,8 @@
-import type { PageConfiguration } from './pageTypes.js';
-
-interface PageConfig {
-  totalPages: number;
-  pages: PageConfiguration[];
-  getPageConfiguration(pageNum: number): PageConfiguration;
-  getAnswerKeyUrl(pageNum: number): string;
-  pageExists(pageNum: number): boolean;
-}
+import type { PageConfig, PageConfiguration } from './pageTypes.js';
 
 export const pageConfig: PageConfig = {
   totalPages: 100,
-  
+
   pages: [
     {
       type: 'list',
