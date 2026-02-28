@@ -11,12 +11,13 @@ interface Props {
   currentPage?: number;
   totalPages?: number;
   answerKeyUrl?: string;
+  bookId?: string;
   pageTitle?: string;
   pageDescription?: string;
   actionContent?: ActionContent;
 }
 
-const { title, currentPage = 1, totalPages = 100, answerKeyUrl, pageTitle, pageDescription, actionContent } = Astro.props as Props;
+const { title, currentPage = 1, totalPages = 100, answerKeyUrl, bookId = 'nfl', pageTitle, pageDescription, actionContent } = Astro.props as Props;
 ---
 
 <!DOCTYPE html>
@@ -37,10 +38,11 @@ const { title, currentPage = 1, totalPages = 100, answerKeyUrl, pageTitle, pageD
     <PageFooter currentPage={currentPage} answerKeyUrl={answerKeyUrl} />
   </div>
   
-  <script define:vars={{ currentPage, answerKeyUrl }}>
+  <script define:vars={{ currentPage, answerKeyUrl, bookId }}>
     window.bookAppConfig = {
       currentPage,
-      answerKeyUrl: answerKeyUrl || `https://example.com/page-${currentPage}-answers`
+      answerKeyUrl: answerKeyUrl || `https://example.com/page-${currentPage}-answers`,
+      bookId
     };
   </script>
   <script src="/src/scripts/bookApp.ts"></script>

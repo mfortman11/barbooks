@@ -1,0 +1,74 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import List from '../../components/page-types/List.astro';
+import Matchup from '../../components/page-types/Matchup.astro';
+import Teams from '../../components/page-types/Teams.astro';
+import { booksConfig } from '../../utils/pageConfig.js';
+import type { GetStaticPaths } from 'astro';
+import type { PageConfiguration } from '../../utils/pageTypes.js';
+
+export const getStaticPaths: GetStaticPaths = () => {
+  const paths: Array<{ params: { book: string, page: string } }> = [];
+  
+  for (const [bookId, bookConfig] of Object.entries(booksConfig)) {
+    for (let i = 1; i <= bookConfig.totalPages; i++) {
+      paths.push({
+        params: { book: bookId, page: i.toString() }
+      });
+    }
+  }
+  
+  return paths;
+};
+
+const { book, page } = Astro.params;
+const pageNumber: number = parseInt(page as string);
+const bookId: string = book as string;
+
+const bookConfig = booksConfig[bookId];
+
+// If the book doesn't exist, redirect to NFL book page 1
+if (!bookConfig) {
+  return Astro.redirect('/barbooks/nfl/1/');
+}
+
+if (!bookConfig.pageExists(pageNumber)) {
+  return Astro.redirect(`/barbooks/${bookId}/1/`);
+}
+
+const pageConfiguration: PageConfiguration = bookConfig.getPageConfiguration(pageNumber);
+const answerKeyUrl: string = bookConfig.getAnswerKeyUrl(pageNumber);
+const title: string = `${bookId.toUpperCase()} Book - Page ${pageNumber}`;
+---
+
+<Layout title={title} currentPage={pageNumber} totalPages={bookConfig.totalPages} answerKeyUrl={answerKeyUrl} bookId={bookId} pageTitle={(pageConfiguration.type === 'list' || pageConfiguration.type === 'matchup' || pageConfiguration.type === 'teams') ? pageConfiguration.title : undefined} pageDescription={(pageConfiguration.type === 'list' || pageConfiguration.type === 'matchup' || pageConfiguration.type === 'teams') ? pageConfiguration.description : undefined} actionContent={pageConfiguration.actionContent}>
+  <div class="relative bg-white rounded-lg shadow-lg p-8 px-24 pt-2 max-w-4xl mx-auto print:bg-transparent print:shadow-none print:p-10 print:pt-0 print:max-w-none print:m-0 print:pb-16 print:px-32 print:rounded-none">
+    <div class="prose prose-lg max-w-none">
+      {pageConfiguration.type === 'list' && (
+        <List
+          items={pageConfiguration.items}
+          columns={pageConfiguration.columns}
+          showInstructions={pageConfiguration.showInstructions}
+          instructionText={pageConfiguration.instructionText}
+        />
+      )}
+
+      {pageConfiguration.type === 'matchup' && (
+        <Matchup
+          items={pageConfiguration.items}
+          columns={pageConfiguration.columns}
+          showInstructions={pageConfiguration.showInstructions}
+          instructionText={pageConfiguration.instructionText}
+        />
+      )}
+      
+      {pageConfiguration.type === 'teams' && (
+        <Teams bookId={bookId} />
+      )}
+
+      {(pageConfiguration.type === 'text' || pageConfiguration.type === 'custom') && (
+        <div class="text-gray-700 leading-relaxed text-lg print:text-black print:text-base print:leading-relaxed" set:html={pageConfiguration.content}></div>
+      )}
+    </div>
+  </div>
+</Layout>

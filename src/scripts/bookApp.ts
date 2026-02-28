@@ -7,6 +7,7 @@ declare global {
     bookAppConfig?: {
       currentPage: number;
       answerKeyUrl: string;
+      bookId: string;
     };
   }
 }
@@ -15,13 +16,15 @@ class BookApp {
   private currentPage: number;
   private readonly totalPages: number = 100;
   private answerKeyUrl: string;
+  private bookId: string;
 
   constructor() {
-    // Parse current page from URL: /barbooks/3/ -> 3
+    // Parse current page from URL: /barbooks/nfl/3/ -> 3
     const pathParts = window.location.pathname.split('/').filter(part => part !== '');
     const pageParam = pathParts[pathParts.length - 1];
-    this.currentPage = parseInt(pageParam) || 1;
+    this.currentPage = window.bookAppConfig?.currentPage || parseInt(pageParam) || 1;
     this.answerKeyUrl = window.bookAppConfig?.answerKeyUrl || `https://example.com/page-${this.currentPage}-answers`;
+    this.bookId = window.bookAppConfig?.bookId || (pathParts.length > 2 ? pathParts[1] : 'nfl');
     this.init();
   }
 
@@ -40,7 +43,7 @@ class BookApp {
       goBtn.addEventListener('click', () => {
         const pageNum = parseInt(pageInput.value);
         if (pageNum && pageNum >= 1 && pageNum <= this.totalPages) {
-          window.location.href = `/barbooks/${pageNum}/`;
+          window.location.href = `/barbooks/${this.bookId}/${pageNum}/`;
           pageInput.value = '';
         }
       });
@@ -63,7 +66,7 @@ class BookApp {
     if (prevBtn) {
       prevBtn.addEventListener('click', () => {
         if (this.currentPage > 1) {
-          window.location.href = `/barbooks/${this.currentPage - 1}/`;
+          window.location.href = `/barbooks/${this.bookId}/${this.currentPage - 1}/`;
         }
       });
     }
@@ -71,7 +74,7 @@ class BookApp {
     if (nextBtn) {
       nextBtn.addEventListener('click', () => {
         if (this.currentPage < this.totalPages) {
-          window.location.href = `/barbooks/${this.currentPage + 1}/`;
+          window.location.href = `/barbooks/${this.bookId}/${this.currentPage + 1}/`;
         }
       });
     }

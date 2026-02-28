@@ -2,9 +2,12 @@
 interface Props {
   title?: string;
   description?: string;
+  bookId?: string;
 }
 
-const conferences = [
+const { bookId = 'nfl' } = Astro.props;
+
+const nflConferences = [
   {
     name: 'AFC',
     divisions: [
@@ -24,6 +27,28 @@ const conferences = [
     ],
   },
 ];
+
+const nbaConferences = [
+  {
+    name: 'Eastern Conference',
+    divisions: [
+      { name: 'Atlantic', teams: ['Celtics', 'Nets', 'Knicks', '76ers', 'Raptors'] },
+      { name: 'Central', teams: ['Bulls', 'Cavaliers', 'Pistons', 'Pacers', 'Bucks'] },
+      { name: 'Southeast', teams: ['Hawks', 'Hornets', 'Heat', 'Magic', 'Wizards'] },
+    ],
+  },
+  {
+    name: 'Western Conference',
+    divisions: [
+      { name: 'Northwest', teams: ['Nuggets', 'Timberwolves', 'Thunder', 'Trail Blazers', 'Jazz'] },
+      { name: 'Pacific', teams: ['Warriors', 'Clippers', 'Lakers', 'Suns', 'Kings'] },
+      { name: 'Southwest', teams: ['Mavericks', 'Rockets', 'Grizzlies', 'Pelicans', 'Spurs'] },
+    ],
+  },
+];
+
+const conferences = bookId === 'nba' ? nbaConferences : nflConferences;
+const gridCols = bookId === 'nba' ? 'grid-cols-3' : 'grid-cols-4';
 ---
 
 <div class="max-w-4xl mx-auto space-y-4 print:space-y-3">
@@ -32,7 +57,7 @@ const conferences = [
       <div class="text-xs font-bold text-gray-500 print:text-black uppercase tracking-widest mb-1 print:mb-1">
         {conference.name}
       </div>
-      <div class="grid grid-cols-4 gap-x-4 gap-y-0 print:gap-x-3">
+      <div class={`grid ${gridCols} gap-x-4 gap-y-0 print:gap-x-3`}>
         {conference.divisions.map((division) => (
           <div>
             <div class="text-xs font-semibold text-gray-400 print:text-black uppercase tracking-wide border-b border-gray-300 print:border-black pb-0.5 mb-1 print:mb-1">

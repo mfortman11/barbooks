@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Goal
 
-**BarBooks** (working brand name) is an NFL trivia book system designed for print-on-demand distribution. The project lets people play collaborative trivia with friends — questions like "name the last 20 NFL MVPs" or "who is each team's all-time passing leader."
+**BarBooks** (working brand name) is a multi-sport trivia book system (NFL, NBA) designed for print-on-demand distribution. The project lets people play collaborative trivia with friends — questions like "name the last 20 NFL MVPs" or "who is each team's all-time passing leader."
 
 ### How it works end-to-end
 
-1. **Content is authored in Excel** (`page_config.xlsx`). Each row defines one page of the book.
+1. **Content is authored in Excel** (e.g., `NFL Barbook Trivia.xlsx`). Each row defines one page of the book.
 2. **The spreadsheet is converted to TypeScript** via `npm run sync-pages`, generating `src/utils/pageConfig.ts`.
 3. **An Astro site** provides a browsable, print-ready web view of every page, deployed to GitHub Pages.
 4. **A PDF generation script** (headless browser, one PDF per page) visits each page URL and prints it, then stitches the PDFs into a single book-ready file.
@@ -38,7 +38,7 @@ NFL is the initial focus. Other sports (NBA, MLB, etc.) are planned as future vo
 - `npm run dev` - Start local development server at localhost:4321
 - `npm run build` - Build production site to `./dist/`
 - `npm run preview` - Preview the built site locally
-- `npm run sync-pages` - Regenerate `src/utils/pageConfig.ts` from `page_config.xlsx`
+- `npm run sync-pages` - Regenerate `src/utils/pageConfig.ts` from sport-specific Excel files
 - `npm run astro` - Run Astro CLI commands directly
 
 > **No test framework is configured.** There are no unit or integration tests. Verify changes by running `npm run build` and `npm run dev`.
@@ -65,8 +65,8 @@ barbooks/
 │   │   └── PageFooter.astro             # Print-only footer with QR code
 │   ├── layouts/Layout.astro             # Root HTML template
 │   ├── pages/
-│   │   ├── index.astro                  # Redirects to /barbooks/1/
-│   │   ├── [page].astro                 # Dynamic route: generates pages 1-100
+│   │   ├── index.astro                  # Redirects to /barbooks/nfl/1/
+│   │   ├── [book]/[page].astro          # Dynamic route: generates pages for all books
 │   │   └── 404.astro                    # Not found page
 │   ├── scripts/bookApp.ts               # Client-side navigation + QR codes
 │   ├── styles/global.css                # Tailwind v4 import
@@ -74,7 +74,8 @@ barbooks/
 │       ├── pageTypes.ts                 # TypeScript interfaces for page types
 │       ├── pageConfig.ts                # Page content config (auto-generated)
 │       └── excelToJson.ts               # Excel-to-TS code generator script
-├── page_config.xlsx                     # Source of truth for page content
+├── NFL Barbook Trivia.xlsx              # NFL source of truth
+├── NBA Barbook Trivia.xlsx              # NBA source of truth
 ├── astro.config.mjs
 ├── tsconfig.json
 └── package.json
@@ -82,16 +83,14 @@ barbooks/
 
 ### Page Configuration System
 
-**The primary way to manage page content is via `page_config.xlsx`.** Do not manually edit `pageConfig.ts` — it is auto-generated and marked with a `DO NOT EDIT BY HAND` header.
+**The primary way to manage page content is via the sport-specific Excel files (e.g. `NFL Barbook Trivia.xlsx`).** Do not manually edit `pageConfig.ts` — it is auto-generated and marked with a `DO NOT EDIT BY HAND` header.
 
 Workflow for updating pages:
-1. Edit `page_config.xlsx` (two sheets: **Pages** and **Matchup Items**)
+1. Edit the relevant Excel file (two sheets: **Pages** and **Matchup Items**)
 2. Run `npm run sync-pages` to regenerate `src/utils/pageConfig.ts`
 3. Verify with `npm run build`
 
-The sync script (`src/utils/excelToJson.ts`) reads the spreadsheet and emits TypeScript. It supports optional CLI args:
-- `--excel <path>` — path to the `.xlsx` file (default: `page_config.xlsx`)
-- `--out <path>` — output path (default: `src/utils/pageConfig.ts`)
+The sync script (`src/utils/excelToJson.ts`) reads all configured Excel files in the `BOOKS` array and emits TypeScript.
 
 #### Excel Sheet Schema
 
