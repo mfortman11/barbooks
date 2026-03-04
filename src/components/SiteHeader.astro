@@ -1,63 +1,90 @@
 ---
-interface Props {
-  totalPages?: number;
-  currentPage?: number;
+interface PageSummary {
+  pageNum: number;
+  label: string;
+  type: string;
 }
 
-const { totalPages = 100, currentPage = 1 } = Astro.props as Props;
+interface Props {
+  currentPage?: number;
+  bookId?: string;
+  pages?: PageSummary[];
+}
+
+const { currentPage = 1, bookId = 'nfl', pages = [] } = Astro.props as Props;
+
+const uniqueTypes = [...new Set(pages.map(p => p.type))].sort();
 ---
 
-<button class="fixed top-5 right-5 z-50 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded text-sm print:hidden" onclick="window.print()">Print Page</button>
-
 <header class="bg-blue-600 text-white shadow-lg print:hidden">
-  <div class="container mx-auto px-4 py-4">
-    <h1 class="text-2xl font-bold">Book Reader</h1>
-    <nav class="mt-2">
-      <div class="flex items-center space-x-4">
-        <div class="flex space-x-2">
-          {[1, 2, 3, 4, 5].map(pageNum => (
-            <a
-              href={`/barbooks/${pageNum}/`}
-              class={`page-link transition-colors duration-200 ${
-                currentPage === pageNum
-                  ? 'text-blue-200 font-semibold'
-                  : 'hover:text-blue-200'
-              }`}
-              data-page={pageNum}
-            >
-              Page {pageNum}
-            </a>
-          ))}
-          <span class="text-blue-200">...</span>
-          <a
-            href={`/barbooks/${totalPages}/`}
-            class={`page-link transition-colors duration-200 ${
-              currentPage === totalPages
-                ? 'text-blue-200 font-semibold'
-                : 'hover:text-blue-200'
-            }`}
-            data-page={totalPages}
-          >
-            Page {totalPages}
-          </a>
-        </div>
-        <div class="ml-4">
-          <input
-            type="number"
-            id="page-input"
-            min="1"
-            max={totalPages}
-            placeholder="Go to page..."
-            class="px-2 py-1 text-black rounded text-sm w-32"
-          />
-          <button
-            id="go-to-page-btn"
-            class="ml-2 bg-blue-500 hover:bg-blue-700 px-3 py-1 rounded text-sm"
-          >
-            Go
-          </button>
-        </div>
-      </div>
-    </nav>
+  <div class="container mx-auto px-6 py-5 flex items-center gap-3">
+
+    <!-- Sport toggle -->
+    <div class="flex rounded overflow-hidden border border-white/40 text-sm font-semibold shrink-0">
+      <a
+        href="/barbooks/nfl/1/"
+        class={`px-3 py-1.5 transition-colors ${bookId === 'nfl' ? 'bg-white text-blue-600' : 'hover:bg-white/10'}`}
+      >NFL</a>
+      <a
+        href="/barbooks/nba/1/"
+        class={`px-3 py-1.5 transition-colors border-l border-white/40 ${bookId === 'nba' ? 'bg-white text-blue-600' : 'hover:bg-white/10'}`}
+      >NBA</a>
+    </div>
+
+    <!-- Type filter -->
+    <select
+      id="type-filter"
+      class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer shrink-0"
+    >
+      <option value="">All Types</option>
+      {uniqueTypes.map(type => (
+        <option value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+      ))}
+    </select>
+
+    <!-- Pages dropdown -->
+    <select
+      id="page-select"
+      class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer"
+    >
+      {pages.map(p => (
+        <option value={p.pageNum} data-type={p.type} selected={p.pageNum === currentPage}>
+          {p.pageNum}. {p.label}
+        </option>
+      ))}
+    </select>
+
+    <!-- Print button -->
+    <button
+      class="ml-auto shrink-0 bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium transition-colors"
+      onclick="window.print()"
+    >
+      Print Page
+    </button>
+
   </div>
 </header>
+
+<script define:vars={{ bookId }}>
+  const typeFilter = document.getElementById('type-filter');
+  const pageSelect = document.getElementById('page-select');
+
+  if (typeFilter && pageSelect) {
+    typeFilter.addEventListener('change', () => {
+      const selected = typeFilter.value;
+      Array.from(pageSelect.options).forEach(opt => {
+        opt.hidden = selected ? opt.dataset.type !== selected : false;
+      });
+      // If the currently selected option is now hidden, jump to the first visible one
+      if (pageSelect.selectedOptions[0]?.hidden) {
+        const first = Array.from(pageSelect.options).find(o => !o.hidden);
+        if (first) pageSelect.value = first.value;
+      }
+    });
+
+    pageSelect.addEventListener('change', () => {
+      const pageNum = pageSelect.value;
+      if (pageNum) window.location.href = `/barbooks/${bookId}/${pageNum}/`;
+    });
+  }
+</script>
