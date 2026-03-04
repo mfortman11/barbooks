@@ -134,12 +134,13 @@ class BookApp {
     }
     
     const footerQR = document.createElement('div');
-    footerQR.className = 'footer-qr flex items-center space-x-1 print:hidden';
+    footerQR.className = 'footer-qr flex items-center gap-2 print:hidden';
     
     const answerUrl = this.answerKeyUrl;
     
     footerQR.innerHTML = `
       <div id="footer-qr-canvas"></div>
+      <a id="footer-source-link" href="${answerUrl}" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white text-xs underline truncate max-w-xs">Source</a>
     `;
     
     // Add to the center section alongside the page number
@@ -153,12 +154,13 @@ class BookApp {
       qr.addData(answerUrl);
       qr.make();
       
-      const qrSvg = qr.createSvgTag(4, 2);
-      
+      const qrSvg = qr.createSvgTag(3, 0);
+
       const qrContainer = document.createElement('div');
       qrContainer.innerHTML = qrSvg;
-      qrContainer.style.width = '32px';
-      qrContainer.style.height = '32px';
+      qrContainer.style.width = '64px';
+      qrContainer.style.height = '64px';
+      qrContainer.style.overflow = 'hidden';
       
       const footerCanvas = document.getElementById('footer-qr-canvas');
       if (footerCanvas) {
@@ -170,7 +172,7 @@ class BookApp {
       const footerCanvas = document.getElementById('footer-qr-canvas');
       if (footerCanvas) {
         footerCanvas.innerHTML = `
-          <div class="w-8 h-8 bg-red-200 flex items-center justify-center border rounded">
+          <div class="w-16 h-16 bg-red-200 flex items-center justify-center border rounded">
             <a href="${answerUrl}" target="_blank" class="text-xs text-center">!</a>
           </div>
         `;

@@ -5,6 +5,7 @@ import SiteFooter from '../components/SiteFooter.astro';
 import PageHeader from '../components/PageHeader.astro';
 import PageFooter from '../components/PageFooter.astro';
 import type { ActionContent } from '../utils/pageTypes.js';
+import { booksConfig } from '../utils/pageConfig.js';
 
 interface Props {
   title: string;
@@ -18,6 +19,13 @@ interface Props {
 }
 
 const { title, currentPage = 1, totalPages = 100, answerKeyUrl, bookId = 'nfl', pageTitle, pageDescription, actionContent } = Astro.props as Props;
+
+const book = booksConfig[bookId];
+const pagesSummary = book ? book.pages.map((page, i) => ({
+  pageNum: i + 1,
+  label: ('title' in page && page.title) ? page.title : `(${page.type})`,
+  type: page.type,
+})) : [];
 ---
 
 <!DOCTYPE html>
@@ -29,7 +37,7 @@ const { title, currentPage = 1, totalPages = 100, answerKeyUrl, bookId = 'nfl', 
 </head>
 <body class="bg-white min-h-screen flex flex-col">
   <div id="app" class="flex flex-col flex-1">
-    <SiteHeader totalPages={totalPages} currentPage={currentPage} />
+    <SiteHeader currentPage={currentPage} bookId={bookId} pages={pagesSummary} />
     <PageHeader title={title} currentPage={currentPage} pageTitle={pageTitle} pageDescription={pageDescription} actionContent={actionContent} />
     <main class="flex-1 container mx-auto px-4 print:p-0 print:m-0 print:max-w-none">
       <slot />
