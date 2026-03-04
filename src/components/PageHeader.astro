@@ -14,7 +14,7 @@ const { title = "Book Page", currentPage = 1, pageTitle, pageDescription, action
 ---
 
 <!-- Page header that appears on printed pages and book content -->
-<div class="page-header pt-20 relative">
+<div class="page-header pt-20 print:pt-4 relative">
   {actionContent && (
     <ActionContent
       content={actionContent.content}
