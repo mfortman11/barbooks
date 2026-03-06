@@ -2,6 +2,7 @@
 
 @media print {
   @page {
-    margin: 5% 8%;
+    size: 6in 9in;
+    margin: 0.5in 0.75in;
   }
 }
