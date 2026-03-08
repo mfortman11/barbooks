@@ -314,7 +314,6 @@ for (const book of BOOKS) {
   
   const bookStr = `
   '${book.id}': {
-    totalPages: 100, // Fixed to 100 for now, could be result.pages.length based
     pages: [
 ${pagesBlock}
     ],
@@ -334,7 +333,7 @@ ${pagesBlock}
       return pageConfiguration.answerKeyUrl || \`https://example.com/page-\${pageNum}-answers\`;
     },
     pageExists(pageNum: number): boolean {
-      return pageNum >= 1 && pageNum <= this.totalPages;
+      return pageNum >= 1 && pageNum <= this.pages.length;
     }
   }`;
   bookConfigs.push(bookStr);

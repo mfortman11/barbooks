@@ -6,6 +6,7 @@ declare global {
   interface Window {
     bookAppConfig?: {
       currentPage: number;
+      totalPages: number;
       answerKeyUrl: string;
       bookId: string;
     };
@@ -14,7 +15,7 @@ declare global {
 
 class BookApp {
   private currentPage: number;
-  private readonly totalPages: number = 100;
+  private readonly totalPages: number;
   private answerKeyUrl: string;
   private bookId: string;
 
@@ -23,6 +24,7 @@ class BookApp {
     const pathParts = window.location.pathname.split('/').filter(part => part !== '');
     const pageParam = pathParts[pathParts.length - 1];
     this.currentPage = window.bookAppConfig?.currentPage || parseInt(pageParam) || 1;
+    this.totalPages = window.bookAppConfig?.totalPages ?? 0;
     this.answerKeyUrl = window.bookAppConfig?.answerKeyUrl || `https://example.com/page-${this.currentPage}-answers`;
     this.bookId = window.bookAppConfig?.bookId || (pathParts.length > 2 ? pathParts[1] : 'nfl');
     this.init();

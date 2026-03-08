@@ -10,7 +10,6 @@ import { booksConfig } from '../utils/pageConfig.js';
 interface Props {
   title: string;
   currentPage?: number;
-  totalPages?: number;
   answerKeyUrl?: string;
   bookId?: string;
   pageTitle?: string;
@@ -18,9 +17,10 @@ interface Props {
   actionContent?: ActionContent;
 }
 
-const { title, currentPage = 1, totalPages = 100, answerKeyUrl, bookId = 'nfl', pageTitle, pageDescription, actionContent } = Astro.props as Props;
+const { title, currentPage = 1, answerKeyUrl, bookId = 'nfl', pageTitle, pageDescription, actionContent } = Astro.props as Props;
 
 const book = booksConfig[bookId];
+const totalPages = book?.pages.length ?? 0;
 const pagesSummary = book ? book.pages.map((page, i) => ({
   pageNum: i + 1,
   label: ('title' in page && page.title) ? page.title : `(${page.type})`,
@@ -36,7 +36,7 @@ const pagesSummary = book ? book.pages.map((page, i) => ({
   <title class="print:hidden">{title}</title>
 </head>
 <body class="bg-white min-h-screen flex flex-col">
-  <div id="app" class="flex flex-col flex-1">
+  <div id="app" class="flex flex-col flex-1 print:h-full">
     <SiteHeader currentPage={currentPage} bookId={bookId} pages={pagesSummary} />
     <PageHeader title={title} currentPage={currentPage} pageTitle={pageTitle} pageDescription={pageDescription} actionContent={actionContent} />
     <main class="flex-1 container mx-auto px-4 print:p-0 print:m-0 print:max-w-none">
@@ -46,9 +46,10 @@ const pagesSummary = book ? book.pages.map((page, i) => ({
     <PageFooter currentPage={currentPage} answerKeyUrl={answerKeyUrl} />
   </div>
   
-  <script define:vars={{ currentPage, answerKeyUrl, bookId }}>
+  <script define:vars={{ currentPage, totalPages, answerKeyUrl, bookId }}>
     window.bookAppConfig = {
       currentPage,
+      totalPages,
       answerKeyUrl: answerKeyUrl || `https://example.com/page-${currentPage}-answers`,
       bookId
     };
