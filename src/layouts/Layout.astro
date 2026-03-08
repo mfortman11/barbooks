@@ -36,7 +36,7 @@ const pagesSummary = book ? book.pages.map((page, i) => ({
   <title class="print:hidden">{title}</title>
 </head>
 <body class="bg-white min-h-screen flex flex-col">
-  <div id="app" class="flex flex-col flex-1">
+  <div id="app" class="flex flex-col flex-1 print:h-full">
     <SiteHeader currentPage={currentPage} bookId={bookId} pages={pagesSummary} />
     <PageHeader title={title} currentPage={currentPage} pageTitle={pageTitle} pageDescription={pageDescription} actionContent={actionContent} />
     <main class="flex-1 container mx-auto px-4 print:p-0 print:m-0 print:max-w-none">
