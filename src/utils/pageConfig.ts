@@ -10,7 +10,6 @@ import type { PageConfig, PageConfiguration } from './pageTypes.js';
 export const booksConfig: Record<string, PageConfig> = {
 
   'nfl': {
-    totalPages: 100, // Fixed to 100 for now, could be result.pages.length based
     pages: [
     {
       type: 'list',
@@ -1358,12 +1357,11 @@ export const booksConfig: Record<string, PageConfig> = {
       return pageConfiguration.answerKeyUrl || `https://example.com/page-${pageNum}-answers`;
     },
     pageExists(pageNum: number): boolean {
-      return pageNum >= 1 && pageNum <= this.totalPages;
+      return pageNum >= 1 && pageNum <= this.pages.length;
     }
   },
 
   'nba': {
-    totalPages: 100, // Fixed to 100 for now, could be result.pages.length based
     pages: [
     {
       type: 'teams',
@@ -1388,7 +1386,7 @@ export const booksConfig: Record<string, PageConfig> = {
       return pageConfiguration.answerKeyUrl || `https://example.com/page-${pageNum}-answers`;
     },
     pageExists(pageNum: number): boolean {
-      return pageNum >= 1 && pageNum <= this.totalPages;
+      return pageNum >= 1 && pageNum <= this.pages.length;
     }
   }
 };

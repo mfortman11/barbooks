@@ -75,7 +75,6 @@ export interface TeamsPageConfig {
 export type PageConfiguration = ListPageConfig | TextPageConfig | CustomPageConfig | MatchupPageConfig | TeamsPageConfig;
 
 export interface PageConfig {
-  totalPages: number;
   pages: PageConfiguration[];
   getPageConfiguration(pageNum: number): PageConfiguration;
   getAnswerKeyUrl(pageNum: number): string;

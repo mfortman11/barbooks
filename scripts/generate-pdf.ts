@@ -106,15 +106,12 @@ async function main() {
         continue;
       }
 
-      log(`\nGenerating PDF for book: ${bookId} (${bookConfig.totalPages} pages)`);
+      const configuredPageCount = bookConfig.pages.length;
+      log(`\nGenerating PDF for book: ${bookId} (${configuredPageCount} pages)`);
 
       const pagePdfs: Buffer[] = [];
 
-      for (let pageNum = 1; pageNum <= bookConfig.totalPages; pageNum++) {
-        if (!bookConfig.pageExists(pageNum)) {
-          log(`  Page ${pageNum}: no content, skipping.`);
-          continue;
-        }
+      for (let pageNum = 1; pageNum <= configuredPageCount; pageNum++) {
 
         const url = `${BASE_URL}/${bookId}/${pageNum}/`;
         log(`  Page ${pageNum}: ${url}`);

@@ -39,6 +39,7 @@ NFL is the initial focus. Other sports (NBA, MLB, etc.) are planned as future vo
 - `npm run build` - Build production site to `./dist/`
 - `npm run preview` - Preview the built site locally
 - `npm run sync-pages` - Regenerate `src/utils/pageConfig.ts` from sport-specific Excel files
+- `npm run generate-pdf` - Generate a print-ready PDF book (see [PDF Generation](#pdf-generation) below)
 - `npm run astro` - Run Astro CLI commands directly
 
 > **No test framework is configured.** There are no unit or integration tests. Verify changes by running `npm run build` and `npm run dev`.
@@ -53,6 +54,8 @@ This is an Astro-based book reader application designed for GitHub Pages deploym
 barbooks/
 ├── .claude/agents/book-page-creator.md  # Claude sub-agent for page creation
 ├── .github/workflows/deploy.yml         # GitHub Actions CI/CD to GitHub Pages
+├── scripts/
+│   └── generate-pdf.ts                  # PDF generation script (Playwright + pdf-lib)
 ├── public/favicon.svg
 ├── src/
 │   ├── components/
@@ -236,6 +239,52 @@ GitHub Pages configuration (in `astro.config.mjs`):
 - `assetsInlineLimit: 0` (required for GitHub Pages asset resolution)
 
 All internal links must account for the `/barbooks` base path. Astro handles this automatically when using its built-in routing and asset helpers.
+
+## PDF Generation
+
+The script at `scripts/generate-pdf.ts` produces a single print-ready PDF per book by:
+
+1. Building the Astro site (skippable with `--skip-build`)
+2. Starting a local `astro preview` server on port 4322
+3. Using **Playwright** (Chromium) to navigate each page URL and call `page.pdf()` — output dimensions are 6×9 in (KDP trim size)
+4. Stitching all per-page PDFs into one document with **pdf-lib**
+5. Writing `{bookId}-book.pdf` (or a custom path) to the project root
+
+### Prerequisites
+
+Playwright browser binaries must be installed separately — they are not downloaded by `npm install`:
+
+```sh
+npx playwright install chromium
+```
+
+On Linux/CI the script tries a pre-installed binary at `/root/.cache/ms-playwright/chromium-1194/chrome-linux/chrome` before falling back to Playwright's auto-detection. On macOS the auto-detected path is used automatically.
+
+### CLI flags
+
+| Flag | Description |
+|------|-------------|
+| `--book <id>` | Generate only one book (e.g. `--book nfl`). Omit to generate all books. |
+| `--skip-build` | Skip `astro build` (use when `dist/` is already up to date). |
+| `--out <path>` | Custom output path for the merged PDF. |
+
+### Examples
+
+```sh
+# Build + generate all books
+npm run generate-pdf
+
+# Regenerate the NFL book without rebuilding
+npm run generate-pdf -- --book nfl --skip-build
+
+# Custom output path
+npm run generate-pdf -- --book nfl --out ~/Desktop/nfl-draft.pdf
+```
+
+### Dependencies
+
+- `playwright` (devDependency) — headless Chromium for printing pages
+- `pdf-lib` (devDependency) — merging individual page PDFs into one document
 
 ## Key Conventions
 
