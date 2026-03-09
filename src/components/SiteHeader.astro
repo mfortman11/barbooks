@@ -3,6 +3,8 @@ interface PageSummary {
   pageNum: number;
   label: string;
   type: string;
+  category: string;
+  difficulty: string;
 }
 
 interface Props {
@@ -14,6 +16,9 @@ interface Props {
 const { currentPage = 1, bookId = 'nfl', pages = [] } = Astro.props as Props;
 
 const uniqueTypes = [...new Set(pages.map(p => p.type))].sort();
+const uniqueCategories = [...new Set(pages.map(p => p.category).filter(Boolean))].sort();
+const difficultyOrder = ['Easy', 'Medium', 'Hard'];
+const uniqueDifficulties = [...new Set(pages.map(p => p.difficulty).filter(Boolean))].sort((a, b) => difficultyOrder.indexOf(a) - difficultyOrder.indexOf(b));
 ---
 
 <header class="bg-blue-600 text-white shadow-lg print:hidden">
@@ -42,13 +47,39 @@ const uniqueTypes = [...new Set(pages.map(p => p.type))].sort();
       ))}
     </select>
 
+    <!-- Category filter -->
+    {uniqueCategories.length > 0 && (
+      <select
+        id="category-filter"
+        class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer shrink-0"
+      >
+        <option value="">All Categories</option>
+        {uniqueCategories.map(cat => (
+          <option value={cat}>{cat}</option>
+        ))}
+      </select>
+    )}
+
+    <!-- Difficulty filter -->
+    {uniqueDifficulties.length > 0 && (
+      <select
+        id="difficulty-filter"
+        class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer shrink-0"
+      >
+        <option value="">All Difficulties</option>
+        {uniqueDifficulties.map(d => (
+          <option value={d}>{d}</option>
+        ))}
+      </select>
+    )}
+
     <!-- Pages dropdown -->
     <select
       id="page-select"
       class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer"
     >
       {pages.map(p => (
-        <option value={p.pageNum} data-type={p.type} selected={p.pageNum === currentPage}>
+        <option value={p.pageNum} data-type={p.type} data-category={p.category} data-difficulty={p.difficulty} selected={p.pageNum === currentPage}>
           {p.pageNum}. {p.label}
         </option>
       ))}
@@ -67,20 +98,30 @@ const uniqueTypes = [...new Set(pages.map(p => p.type))].sort();
 
 <script define:vars={{ bookId }}>
   const typeFilter = document.getElementById('type-filter');
+  const categoryFilter = document.getElementById('category-filter');
+  const difficultyFilter = document.getElementById('difficulty-filter');
   const pageSelect = document.getElementById('page-select');
 
-  if (typeFilter && pageSelect) {
-    typeFilter.addEventListener('change', () => {
-      const selected = typeFilter.value;
-      Array.from(pageSelect.options).forEach(opt => {
-        opt.hidden = selected ? opt.dataset.type !== selected : false;
-      });
-      // If the currently selected option is now hidden, jump to the first visible one
-      if (pageSelect.selectedOptions[0]?.hidden) {
-        const first = Array.from(pageSelect.options).find(o => !o.hidden);
-        if (first) pageSelect.value = first.value;
-      }
+  function applyFilters() {
+    const selectedType = typeFilter ? typeFilter.value : '';
+    const selectedCategory = categoryFilter ? categoryFilter.value : '';
+    const selectedDifficulty = difficultyFilter ? difficultyFilter.value : '';
+    Array.from(pageSelect.options).forEach(opt => {
+      const typeMatch = !selectedType || opt.dataset.type === selectedType;
+      const catMatch = !selectedCategory || opt.dataset.category === selectedCategory;
+      const diffMatch = !selectedDifficulty || opt.dataset.difficulty === selectedDifficulty;
+      opt.hidden = !(typeMatch && catMatch && diffMatch);
     });
+    if (pageSelect.selectedOptions[0]?.hidden) {
+      const first = Array.from(pageSelect.options).find(o => !o.hidden);
+      if (first) pageSelect.value = first.value;
+    }
+  }
+
+  if (pageSelect) {
+    typeFilter?.addEventListener('change', applyFilters);
+    categoryFilter?.addEventListener('change', applyFilters);
+    difficultyFilter?.addEventListener('change', applyFilters);
 
     pageSelect.addEventListener('change', () => {
       const pageNum = pageSelect.value;

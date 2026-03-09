@@ -26,10 +26,14 @@ interface ActionContent {
   icon:     string;
 }
 
+type PageDifficulty = 'Easy' | 'Medium' | 'Hard';
+
 interface ListPage {
   type:          'list';
   title:         string;
   description:   string;
+  category?:     string;
+  difficulty?:   PageDifficulty;
   items:         { clue: string | number }[];
   columns:       number;
   answerKeyUrl:  string;
@@ -45,6 +49,8 @@ interface MatchupPage {
   type:          'matchup';
   title:         string;
   description:   string;
+  category?:     string;
+  difficulty?:   PageDifficulty;
   items:         MatchupItem[];
   columns:       number;
   answerKeyUrl:  string;
@@ -61,6 +67,8 @@ interface TeamsPage {
   type:          'teams';
   title:         string;
   description:   string;
+  category?:     string;
+  difficulty?:   PageDifficulty;
   answerKeyUrl:  string;
   actionContent?: ActionContent;
 }
@@ -105,8 +113,8 @@ function processBook(bookId: string, excelPath: string) {
   }
 
   const pagesRaw: any[] = XLSX.utils.sheet_to_json(pagesSheet, {
-    header: ['pageNum', 'type', 'title', 'description', 'itemsNote',
-             'columns', 'answerKeyUrl', 'actionNote', 'notePosition',
+    header: ['pageNum', 'type', 'title', 'description', 'category', 'difficulty',
+             'itemsNote', 'columns', 'answerKeyUrl', 'actionNote', 'notePosition',
              'noteRotation', 'noteIcon'],
     range: 4,
     defval: '',
@@ -142,11 +150,15 @@ function processBook(bookId: string, excelPath: string) {
     const pageNum = Number(row.pageNum);
     if (!pageNum) continue;
 
-    const type    = String(row.type).trim().toLowerCase();
-    const title   = String(row.title).trim();
-    const desc    = String(row.description).trim();
-    const columns = Number(row.columns) || 1;
-    const url     = String(row.answerKeyUrl).trim();
+    const type       = String(row.type).trim().toLowerCase();
+    const title      = String(row.title).trim();
+    const desc       = String(row.description).trim();
+    const columns    = Number(row.columns) || 1;
+    const url        = String(row.answerKeyUrl).trim();
+    const categoryRaw  = String(row.category).trim();
+    const difficultyRaw = String(row.difficulty).trim();
+    const category   = categoryRaw || undefined;
+    const difficulty = (['Easy', 'Medium', 'Hard'].includes(difficultyRaw) ? difficultyRaw : undefined) as PageDifficulty | undefined;
 
     let actionContent: ActionContent | undefined;
     const noteText = String(row.actionNote).trim();
@@ -166,6 +178,8 @@ function processBook(bookId: string, excelPath: string) {
         type:         'list',
         title,
         description:  desc,
+        ...(category   ? { category }   : {}),
+        ...(difficulty ? { difficulty } : {}),
         items:        parseItemsNote(itemsNote),
         columns,
         answerKeyUrl: url,
@@ -181,6 +195,8 @@ function processBook(bookId: string, excelPath: string) {
         type:         'matchup',
         title,
         description:  desc,
+        ...(category   ? { category }   : {}),
+        ...(difficulty ? { difficulty } : {}),
         items,
         columns,
         answerKeyUrl: url,
@@ -197,6 +213,8 @@ function processBook(bookId: string, excelPath: string) {
         type:         'teams',
         title,
         description:  desc,
+        ...(category   ? { category }   : {}),
+        ...(difficulty ? { difficulty } : {}),
         answerKeyUrl: url,
         ...(actionContent ? { actionContent } : {}),
       });
@@ -271,6 +289,8 @@ function serializePage(page: PageConfig): string {
     lines.push(`  type: 'teams',`);
     lines.push(`  title: ${JSON.stringify(page.title)},`);
     lines.push(`  description: ${JSON.stringify(page.description)},`);
+    if (page.category)   lines.push(`  category: ${JSON.stringify(page.category)},`);
+    if (page.difficulty) lines.push(`  difficulty: '${page.difficulty}',`);
     lines.push(`  answerKeyUrl: ${JSON.stringify(page.answerKeyUrl)},`);
     if (page.actionContent) {
       const acStr = serializeActionContent(page.actionContent);
@@ -280,6 +300,8 @@ function serializePage(page: PageConfig): string {
     lines.push(`  type: '${page.type}',`);
     lines.push(`  title: ${JSON.stringify(page.title)},`);
     lines.push(`  description: ${JSON.stringify(page.description)},`);
+    if ('category'   in page && page.category)   lines.push(`  category: ${JSON.stringify(page.category)},`);
+    if ('difficulty' in page && page.difficulty) lines.push(`  difficulty: '${page.difficulty}',`);
 
     if (page.type === 'list') {
       const itemsStr = serializeListItems(page.items);

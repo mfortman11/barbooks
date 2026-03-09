@@ -20,5 +20,8 @@ pnpm-debug.log*
 # macOS-specific files
 .DS_Store
 
+# Excel temporary lock files
+~$*.xlsx
+
 # jetbrains setting folder
 .idea/
