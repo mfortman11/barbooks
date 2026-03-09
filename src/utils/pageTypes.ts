@@ -26,10 +26,14 @@ export interface MatchupItem {
   context?: string | number;
 }
 
+export type PageDifficulty = 'Easy' | 'Medium' | 'Hard';
+
 export interface ListPageConfig {
   type: 'list';
   title: string;
   description?: string;
+  category?: string;
+  difficulty?: PageDifficulty;
   items: ListItem[];
   columns?: number;
   showInstructions?: boolean;
@@ -56,6 +60,8 @@ export interface MatchupPageConfig {
   type: 'matchup';
   title: string;
   description?: string;
+  category?: string;
+  difficulty?: PageDifficulty;
   items: MatchupItem[];
   columns?: number;
   showInstructions?: boolean;
@@ -68,6 +74,8 @@ export interface TeamsPageConfig {
   type: 'teams';
   title: string;
   description?: string;
+  category?: string;
+  difficulty?: PageDifficulty;
   answerKeyUrl?: string;
   actionContent?: ActionContent;
 }
