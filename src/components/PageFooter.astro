@@ -1,22 +1,31 @@
 ---
+import QRCode from 'qrcode';
+
 interface Props {
   currentPage?: number;
   answerKeyUrl?: string;
 }
 
 const { currentPage = 1, answerKeyUrl } = Astro.props as Props;
+
+const qrSvg = answerKeyUrl
+  ? await QRCode.toString(answerKeyUrl, { type: 'svg', margin: 1, width: 48, color: { dark: '#000000', light: '#ffffff' } })
+  : null;
+
+const isOdd = currentPage % 2 !== 0;
 ---
 
 <!-- Print footer that appears at bottom of printed pages -->
-<div class="print-footer">
-  <div class="page-info">
-    <span>Page {currentPage}</span>
+<div class={`print-footer ${isOdd ? 'page-left' : 'page-right'}`}>
+  <div class="page-number-slot left-slot">
+    {isOdd && <span>{currentPage}</span>}
   </div>
   <div class="qr-container">
-    <!-- QR code will be inserted here by JavaScript -->
+    {qrSvg && <Fragment set:html={qrSvg} />}
+    <div class="answer-key-label">Scan for Answer Key</div>
   </div>
-  <div class="answer-key-info">
-    <span class="text-xs">Scan for Answer Key</span>
+  <div class="page-number-slot right-slot">
+    {!isOdd && <span>{currentPage}</span>}
   </div>
 </div>
 
@@ -38,14 +47,34 @@ const { currentPage = 1, answerKeyUrl } = Astro.props as Props;
       margin-top: auto;
     }
 
-    .qr-container {
-      display: flex;
-      justify-content: center;
+    .page-number-slot {
+      width: 60px;
+      font-size: 12px;
     }
 
-    .print-footer .qr-code {
-      width: 40px;
-      height: 40px;
+    .left-slot {
+      text-align: left;
+    }
+
+    .right-slot {
+      text-align: right;
+    }
+
+    .qr-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .qr-container svg {
+      width: 48px;
+      height: 48px;
+    }
+
+    .answer-key-label {
+      font-size: 9px;
+      text-align: center;
     }
   }
 </style>

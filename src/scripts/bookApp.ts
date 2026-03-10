@@ -33,7 +33,6 @@ class BookApp {
   private init(): void {
     this.setupPageInput();
     this.setupNavigationButtons();
-    this.addPrintFooter(this.currentPage);
     this.addVisibleQRCode(this.currentPage);
   }
 
@@ -80,49 +79,6 @@ class BookApp {
         }
       });
     }
-  }
-
-  private async addPrintFooter(pageNumber: number): Promise<void> {
-    const existingFooter = document.querySelector('.print-footer');
-    if (existingFooter) {
-      existingFooter.remove();
-    }
-
-    const printFooter = document.createElement('div');
-    printFooter.className = 'print-footer hidden print:flex print:w-full print:max-w-[5in] print:justify-between print:mx-auto print:h-16 print:my-4 print:items-center';
-    
-    const answerUrl = this.answerKeyUrl;
-    
-    try {
-      // @ts-ignore
-      const qr = qrcode(0, 'M');
-      qr.addData(answerUrl);
-      qr.make();
-      
-      const qrSvg = qr.createSvgTag(2, 1);
-      const qrDiv = document.createElement('div');
-      qrDiv.innerHTML = qrSvg;
-      qrDiv.className = 'qr-code';
-      qrDiv.style.width = '40px';
-      qrDiv.style.height = '40px';
-      qrDiv.className = 'pr-8';
-      
-      const leftSpan = document.createElement('span');
-      const centerSpan = document.createElement('span');
-      centerSpan.textContent = `Page ${pageNumber}`;
-      
-      printFooter.appendChild(leftSpan);
-      printFooter.appendChild(centerSpan);
-      printFooter.appendChild(qrDiv);
-    } catch (error) {
-      console.error('QR Code generation failed:', error);
-      printFooter.innerHTML = `
-        <span>Page ${pageNumber}</span>
-        <span>Answer Key: Error</span>
-      `;
-    }
-    
-    document.body.appendChild(printFooter);
   }
 
   private async addVisibleQRCode(pageNumber: number): Promise<void> {
