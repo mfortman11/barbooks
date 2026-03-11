@@ -4,7 +4,7 @@ import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import PageHeader from '../components/PageHeader.astro';
 import PageFooter from '../components/PageFooter.astro';
-import type { ActionContent } from '../utils/pageTypes.js';
+import type { ActionContent, PageDifficulty } from '../utils/pageTypes.js';
 import { booksConfig } from '../utils/pageConfig.js';
 
 interface Props {
@@ -14,10 +14,12 @@ interface Props {
   bookId?: string;
   pageTitle?: string;
   pageDescription?: string;
+  category?: string;
+  difficulty?: PageDifficulty;
   actionContent?: ActionContent;
 }
 
-const { title, currentPage = 1, answerKeyUrl, bookId = 'nfl', pageTitle, pageDescription, actionContent } = Astro.props as Props;
+const { title, currentPage = 1, answerKeyUrl, bookId = 'nfl', pageTitle, pageDescription, category, difficulty, actionContent } = Astro.props as Props;
 
 const book = booksConfig[bookId];
 const totalPages = book?.pages.length ?? 0;
@@ -40,7 +42,7 @@ const pagesSummary = book ? book.pages.map((page, i) => ({
 <body class="bg-white min-h-screen flex flex-col">
   <div id="app" class="flex flex-col flex-1 print:h-full">
     <SiteHeader currentPage={currentPage} bookId={bookId} pages={pagesSummary} />
-    <PageHeader title={title} currentPage={currentPage} pageTitle={pageTitle} pageDescription={pageDescription} actionContent={actionContent} />
+    <PageHeader title={title} currentPage={currentPage} pageTitle={pageTitle} pageDescription={pageDescription} category={category} difficulty={difficulty} actionContent={actionContent} />
     <main class="flex-1 container mx-auto px-4 print:p-0 print:m-0 print:max-w-none">
       <slot />
     </main>
