@@ -22,72 +22,88 @@ const uniqueDifficulties = [...new Set(pages.map(p => p.difficulty).filter(Boole
 ---
 
 <header class="bg-blue-600 text-white shadow-lg print:hidden">
-  <div class="container mx-auto px-6 py-5 flex items-center gap-3">
+  <div class="container mx-auto px-4 py-3 sm:px-6 sm:py-5 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3">
 
-    <!-- Sport toggle -->
-    <div class="flex rounded overflow-hidden border border-white/40 text-sm font-semibold shrink-0">
-      <a
-        href="/barbooks/nfl/1/"
-        class={`px-3 py-1.5 transition-colors ${bookId === 'nfl' ? 'bg-white text-blue-600' : 'hover:bg-white/10'}`}
-      >NFL</a>
-      <a
-        href="/barbooks/nba/1/"
-        class={`px-3 py-1.5 transition-colors border-l border-white/40 ${bookId === 'nba' ? 'bg-white text-blue-600' : 'hover:bg-white/10'}`}
-      >NBA</a>
+    <!-- Row 1 on mobile: sport toggle + print button -->
+    <div class="flex items-center gap-2">
+
+      <!-- Sport toggle -->
+      <div class="flex rounded overflow-hidden border border-white/40 text-sm font-semibold shrink-0">
+        <a
+          href="/barbooks/nfl/1/"
+          class={`px-3 py-1.5 transition-colors ${bookId === 'nfl' ? 'bg-white text-blue-600' : 'hover:bg-white/10'}`}
+        >NFL</a>
+        <a
+          href="/barbooks/nba/1/"
+          class={`px-3 py-1.5 transition-colors border-l border-white/40 ${bookId === 'nba' ? 'bg-white text-blue-600' : 'hover:bg-white/10'}`}
+        >NBA</a>
+      </div>
+
+      <!-- Print button (mobile: in top row; desktop: pushed to far right via ml-auto on sm+) -->
+      <button
+        class="ml-auto sm:hidden shrink-0 bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium transition-colors"
+        onclick="window.print()"
+      >
+        Print
+      </button>
     </div>
 
-    <!-- Type filter -->
-    <select
-      id="type-filter"
-      class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer shrink-0"
-    >
-      <option value="">All Types</option>
-      {uniqueTypes.map(type => (
-        <option value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
-      ))}
-    </select>
+    <!-- Row 2 on mobile / inline on desktop: filters + page select -->
+    <div class="flex flex-wrap items-center gap-2 sm:contents">
 
-    <!-- Category filter -->
-    {uniqueCategories.length > 0 && (
+      <!-- Type filter -->
       <select
-        id="category-filter"
-        class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer shrink-0"
+        id="type-filter"
+        class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer"
       >
-        <option value="">All Categories</option>
-        {uniqueCategories.map(cat => (
-          <option value={cat}>{cat}</option>
+        <option value="">All Types</option>
+        {uniqueTypes.map(type => (
+          <option value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
         ))}
       </select>
-    )}
 
-    <!-- Difficulty filter -->
-    {uniqueDifficulties.length > 0 && (
+      <!-- Category filter -->
+      {uniqueCategories.length > 0 && (
+        <select
+          id="category-filter"
+          class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer"
+        >
+          <option value="">All Categories</option>
+          {uniqueCategories.map(cat => (
+            <option value={cat}>{cat}</option>
+          ))}
+        </select>
+      )}
+
+      <!-- Difficulty filter -->
+      {uniqueDifficulties.length > 0 && (
+        <select
+          id="difficulty-filter"
+          class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer"
+        >
+          <option value="">All Difficulties</option>
+          {uniqueDifficulties.map(d => (
+            <option value={d}>{d}</option>
+          ))}
+        </select>
+      )}
+
+      <!-- Pages dropdown -->
       <select
-        id="difficulty-filter"
-        class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer shrink-0"
+        id="page-select"
+        class="flex-1 min-w-0 px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer"
       >
-        <option value="">All Difficulties</option>
-        {uniqueDifficulties.map(d => (
-          <option value={d}>{d}</option>
+        {pages.map(p => (
+          <option value={p.pageNum} data-type={p.type} data-category={p.category} data-difficulty={p.difficulty} selected={p.pageNum === currentPage}>
+            {p.pageNum}. {p.label}
+          </option>
         ))}
       </select>
-    )}
+    </div>
 
-    <!-- Pages dropdown -->
-    <select
-      id="page-select"
-      class="px-2 py-1.5 text-sm text-black rounded bg-white cursor-pointer"
-    >
-      {pages.map(p => (
-        <option value={p.pageNum} data-type={p.type} data-category={p.category} data-difficulty={p.difficulty} selected={p.pageNum === currentPage}>
-          {p.pageNum}. {p.label}
-        </option>
-      ))}
-    </select>
-
-    <!-- Print button -->
+    <!-- Print button (desktop only, pushed right) -->
     <button
-      class="ml-auto shrink-0 bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium transition-colors"
+      class="hidden sm:block ml-auto shrink-0 bg-green-500 hover:bg-green-600 text-white px-4 py-1.5 rounded text-sm font-medium transition-colors"
       onclick="window.print()"
     >
       Print Page

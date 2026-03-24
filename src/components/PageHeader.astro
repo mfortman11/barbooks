@@ -1,5 +1,6 @@
 ---
 import ActionContent from './ActionContent.astro';
+import Badge from './Badge.astro';
 import type { ActionContent as ActionContentType, PageDifficulty } from '../utils/pageTypes.js';
 
 interface Props {
@@ -14,11 +15,6 @@ interface Props {
 
 const { title = "Book Page", currentPage = 1, pageTitle, pageDescription, category, difficulty, actionContent } = Astro.props as Props;
 
-const difficultyColors: Record<PageDifficulty, string> = {
-  Easy:   'bg-green-100 text-green-800 print:bg-transparent print:text-black print:border print:border-green-800',
-  Medium: 'bg-yellow-100 text-yellow-800 print:bg-transparent print:text-black print:border print:border-yellow-800',
-  Hard:   'bg-red-100 text-red-800 print:bg-transparent print:text-black print:border print:border-red-800',
-};
 ---
 
 <!-- Page header that appears on printed pages and book content -->
@@ -32,7 +28,7 @@ const difficultyColors: Record<PageDifficulty, string> = {
     />
   )}
 
-  <div class="text-center mb-4">
+  <div class="text-center print:text-left mb-4">
     {pageTitle ? (
       <h1 class="text-xl font-bold print:text-black print:text-lg">{pageTitle}</h1>
     ) : (
@@ -42,13 +38,9 @@ const difficultyColors: Record<PageDifficulty, string> = {
       <p class="text-sm text-gray-600 print:text-black print:text-xs mt-2">{pageDescription}</p>
     )}
     {(category || difficulty) && (
-      <div class="flex items-center justify-center gap-2 mt-2">
-        {category && (
-          <span class="text-xs font-medium px-2 py-0.5 rounded bg-blue-100 text-blue-800 print:bg-transparent print:text-black print:border print:border-blue-800">{category}</span>
-        )}
-        {difficulty && (
-          <span class={`text-xs font-medium px-2 py-0.5 rounded ${difficultyColors[difficulty]}`}>{difficulty}</span>
-        )}
+      <div class="flex items-center justify-center print:justify-start gap-2 mt-2">
+        {category && <Badge label="Category" value={category} />}
+        {difficulty && <Badge label="Difficulty" value={difficulty} />}
       </div>
     )}
   </div>

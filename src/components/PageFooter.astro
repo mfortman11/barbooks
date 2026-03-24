@@ -1,5 +1,6 @@
 ---
 import QRCode from 'qrcode';
+import { getBookSide } from '../utils/pageUtils.js';
 
 interface Props {
   currentPage?: number;
@@ -12,7 +13,8 @@ const qrSvg = answerKeyUrl
   ? await QRCode.toString(answerKeyUrl, { type: 'svg', margin: 1, width: 48, color: { dark: '#000000', light: '#ffffff' } })
   : null;
 
-const isOdd = currentPage % 2 !== 0;
+const side = getBookSide(currentPage);
+const isOdd = side === 'right';
 ---
 
 <!-- Print footer that appears at bottom of printed pages -->
