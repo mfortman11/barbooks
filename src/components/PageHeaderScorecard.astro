@@ -1,0 +1,155 @@
+---
+import type { ActionContent as ActionContentType, PageDifficulty, PageType } from '../utils/pageTypes.js';
+
+interface Props {
+  title?: string;
+  currentPage?: number;
+  pageTitle?: string;
+  pageDescription?: string;
+  category?: string;
+  difficulty?: PageDifficulty;
+  actionContent?: ActionContentType;
+  bookId?: string;
+  itemCount?: number;
+  pageType?: PageType;
+}
+
+const { title = "Book Page", currentPage = 1, pageTitle, pageDescription, category, difficulty } = Astro.props as Props;
+
+const displayTitle = pageTitle || title;
+const difficultyLevel = difficulty === 'Easy' ? 1 : difficulty === 'Medium' ? 2 : difficulty === 'Hard' ? 3 : 0;
+const hasMetaGrid = category || difficulty;
+---
+
+<div class="header-outer pt-20 print:pt-0">
+  <div class="scorecard-wrap">
+    <div class="meta-grid">
+      <div class="cell">
+        <div class="cell-label">Question</div>
+        <div class="cell-value">{String(currentPage).padStart(3, '0')}</div>
+      </div>
+      {category && (
+        <div class="cell">
+          <div class="cell-label">Category</div>
+          <div class="cell-value">{category}</div>
+        </div>
+      )}
+      {difficulty && (
+        <div class="cell">
+          <div class="cell-label">Difficulty</div>
+          <div class="diff-value">
+            <div class="diff-pips">
+              <span class:list={[{ on: difficultyLevel >= 1 }]}></span>
+              <span class:list={[{ on: difficultyLevel >= 2 }]}></span>
+              <span class:list={[{ on: difficultyLevel >= 3 }]}></span>
+            </div>
+            <div class="cell-value" style="font-size:11px">{difficulty}</div>
+          </div>
+        </div>
+      )}
+    </div>
+    <div class="question-block">
+      <div class="question-title">{displayTitle}</div>
+      {pageDescription && (
+        <div class="instructions">{pageDescription}</div>
+      )}
+    </div>
+  </div>
+</div>
+
+<style>
+  @media print {
+    .header-outer {
+      margin-left: -0.75in;
+      margin-right: -0.75in;
+      margin-top: -0.5in;
+    }
+  }
+
+  .scorecard-wrap {
+    background: #fff;
+    border-bottom: 2px solid #111;
+    font-family: 'IBM Plex Mono', monospace;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .meta-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    border-bottom: 1px solid #111;
+  }
+
+  .cell {
+    padding: 10px 18px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .cell:last-child { border-right: none; }
+
+  .cell-label {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .cell-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .diff-value {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .diff-pips {
+    display: flex;
+    gap: 3px;
+  }
+
+  .diff-pips span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid #111;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .diff-pips span.on {
+    background: #111;
+  }
+
+  .question-block {
+    padding: 16px 18px 18px;
+  }
+
+  .question-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 32px;
+    letter-spacing: 0.06em;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .instructions {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 0.04em;
+    border-left: 3px solid #111;
+    padding-left: 10px;
+    line-height: 1.5;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+</style>

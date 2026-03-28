@@ -26,7 +26,7 @@ if (!items || items.length === 0) {
     {items.map((item) => (
       <div class="border border-gray-200 print:border-black rounded-lg p-4 print:p-3 print:rounded-none">
         {item.context && (
-          <div class="text-xs text-gray-500 print:text-black mb-2 font-medium">
+          <div class="matchup-context text-xs text-gray-500 print:text-black mb-2 font-medium">
             {item.context}
           </div>
         )}
@@ -39,7 +39,7 @@ if (!items || items.length === 0) {
           
           <!-- Center text (vs, score, etc.) -->
           <div class="flex-shrink-0 px-2">
-            <span class="font-bold text-gray-700 print:text-black text-sm print:text-xs">
+            <span class="matchup-center font-bold text-gray-700 print:text-black text-sm print:text-xs">
               {item.centerText}
             </span>
           </div>
@@ -61,3 +61,12 @@ if (!items || items.length === 0) {
     </div>
   )}
 </div>
+
+<style>
+  @media print {
+    .matchup-context,
+    .matchup-center {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+  }
+</style>

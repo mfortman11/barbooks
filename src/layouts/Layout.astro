@@ -2,9 +2,12 @@
 import '../styles/global.css';
 import SiteHeader from '../components/SiteHeader.astro';
 import SiteFooter from '../components/SiteFooter.astro';
-import PageHeader from '../components/PageHeader.astro';
+// Swap between header designs:
+// import PageHeader from '../components/PageHeader.astro';
+import PageHeader from '../components/PageHeaderScorecard.astro';
+// import PageHeader from '../components/PageHeaderMagazine.astro';
 import PageFooter from '../components/PageFooter.astro';
-import type { ActionContent, PageDifficulty } from '../utils/pageTypes.js';
+import type { ActionContent, PageDifficulty, PageType } from '../utils/pageTypes.js';
 import { booksConfig } from '../utils/pageConfig.js';
 
 interface Props {
@@ -17,9 +20,11 @@ interface Props {
   category?: string;
   difficulty?: PageDifficulty;
   actionContent?: ActionContent;
+  itemCount?: number;
+  pageType?: PageType;
 }
 
-const { title, currentPage = 1, answerKeyUrl, bookId = 'nfl', pageTitle, pageDescription, category, difficulty, actionContent } = Astro.props as Props;
+const { title, currentPage = 1, answerKeyUrl, bookId = 'nfl', pageTitle, pageDescription, category, difficulty, actionContent, itemCount, pageType } = Astro.props as Props;
 
 const book = booksConfig[bookId];
 const totalPages = book?.pages.length ?? 0;
@@ -38,12 +43,15 @@ const pagesSummary = book ? book.pages.map((page, i) => ({
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title class="print:hidden">{title}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:wght@300;400;700;900&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body class="bg-white min-h-screen flex flex-col">
   <div id="app" class="flex flex-col flex-1 print:h-full">
     <SiteHeader currentPage={currentPage} bookId={bookId} pages={pagesSummary} />
-    <PageHeader title={title} currentPage={currentPage} pageTitle={pageTitle} pageDescription={pageDescription} category={category} difficulty={difficulty} actionContent={actionContent} />
-    <main class="flex-1 container mx-auto px-4 print:p-0 print:m-0 print:max-w-none">
+    <PageHeader title={title} currentPage={currentPage} pageTitle={pageTitle} pageDescription={pageDescription} category={category} difficulty={difficulty} actionContent={actionContent} bookId={bookId} itemCount={itemCount} pageType={pageType} />
+    <main class="flex-1 container mx-auto px-4 print:p-0 print:m-0 print:max-w-none print:flex print:flex-col print:justify-center">
       <slot />
     </main>
     <SiteFooter currentPage={currentPage} totalPages={totalPages} />

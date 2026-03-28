@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Do You Know Ball? — Header Concepts</title>
+<link href="https://fonts.googleapis.com/css2?family=UnifrakturMaguntia&family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;700&family=Playfair+Display:wght@400;700;900&family=Barlow+Condensed:wght@300;400;700;900&family=Space+Mono:wght@400;700&family=Anton&family=DM+Serif+Display&family=Courier+Prime:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: #1a1a1a;
+    font-family: sans-serif;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .section-label {
+    color: #666;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: -40px;
+  }
+
+  /* ============================================================
+     CONCEPT 1 — NEWSPAPER
+  ============================================================ */
+  .concept-1 {
+    width: 680px;
+    background: #f5f0e8;
+    border: 2px solid #1a1a1a;
+    padding: 0;
+    font-family: 'Playfair Display', serif;
+    position: relative;
+  }
+
+  .c1-top-bar {
+    background: #1a1a1a;
+    color: #f5f0e8;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 20px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+
+  .c1-masthead {
+    text-align: center;
+    padding: 16px 20px 10px;
+    border-bottom: 3px double #1a1a1a;
+  }
+
+  .c1-masthead .brand {
+    font-family: 'UnifrakturMaguntia', cursive;
+    font-size: 36px;
+    color: #1a1a1a;
+    line-height: 1;
+    letter-spacing: 0.01em;
+  }
+
+  .c1-masthead .tagline {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #555;
+    margin-top: 4px;
+  }
+
+  .c1-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 6px 20px;
+    border-bottom: 1px solid #1a1a1a;
+  }
+
+  .c1-category-pill {
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    background: #1a1a1a;
+    color: #f5f0e8;
+    padding: 3px 10px;
+  }
+
+  .c1-difficulty {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Courier Prime', monospace;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #333;
+  }
+
+  .c1-dots {
+    display: flex;
+    gap: 4px;
+  }
+
+  .c1-dots span {
+    width: 8px;
+    height: 8px;
+    border: 1.5px solid #1a1a1a;
+    border-radius: 50%;
+    display: inline-block;
+  }
+
+  .c1-dots span.filled {
+    background: #1a1a1a;
+  }
+
+  .c1-body {
+    padding: 18px 20px 20px;
+  }
+
+  .c1-question-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    line-height: 1.1;
+    color: #1a1a1a;
+    border-bottom: 1px solid #aaa;
+    padding-bottom: 10px;
+    margin-bottom: 8px;
+  }
+
+  .c1-instructions {
+    font-family: 'Courier Prime', monospace;
+    font-size: 11px;
+    color: #444;
+    font-style: italic;
+    letter-spacing: 0.03em;
+  }
+
+  /* ============================================================
+     CONCEPT 2 — SPORT MAGAZINE
+  ============================================================ */
+  .concept-2 {
+    width: 680px;
+    background: #fff;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #ddd;
+  }
+
+  .c2-slash-bg {
+    position: absolute;
+    top: 0; right: 0;
+    width: 220px;
+    height: 100%;
+    background: #111;
+    clip-path: polygon(40px 0, 100% 0, 100% 100%, 0 100%);
+    z-index: 0;
+  }
+
+  .c2-content {
+    position: relative;
+    z-index: 1;
+    padding: 24px 28px;
+  }
+
+  .c2-brand-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 18px;
+  }
+
+  .c2-brand-name {
+    font-family: 'Anton', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #111;
+  }
+
+  .c2-brand-divider {
+    flex: 1;
+    height: 1px;
+    background: #ccc;
+  }
+
+  .c2-page-num {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: #999;
+  }
+
+  .c2-question-title {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 900;
+    font-size: 42px;
+    line-height: 0.95;
+    text-transform: uppercase;
+    color: #111;
+    max-width: 420px;
+    margin-bottom: 14px;
+  }
+
+  .c2-question-title em {
+    font-style: normal;
+    -webkit-text-stroke: 1.5px #111;
+    color: transparent;
+  }
+
+  .c2-instructions {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.05em;
+    color: #555;
+    max-width: 380px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+  }
+
+  .c2-tags {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .c2-tag {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-weight: 700;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    border: 1.5px solid #111;
+    color: #111;
+  }
+
+  .c2-tag.filled {
+    background: #111;
+    color: #fff;
+  }
+
+  .c2-difficulty-bar {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-left: auto;
+  }
+
+  .c2-bar-label {
+    font-family: 'Barlow Condensed', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .c2-bars {
+    display: flex;
+    gap: 3px;
+    align-items: flex-end;
+    height: 18px;
+  }
+
+  .c2-bars span {
+    width: 6px;
+    background: #ddd;
+    display: block;
+  }
+
+  .c2-bars span.active { background: #111; }
+  .c2-bars span:nth-child(1) { height: 6px; }
+  .c2-bars span:nth-child(2) { height: 10px; }
+  .c2-bars span:nth-child(3) { height: 14px; }
+  .c2-bars span:nth-child(4) { height: 18px; }
+
+  /* ============================================================
+     CONCEPT 3 — SCORECARD / STAT SHEET
+  ============================================================ */
+  .concept-3 {
+    width: 680px;
+    background: #fff;
+    border: 2px solid #111;
+    font-family: 'IBM Plex Mono', monospace;
+  }
+
+  .c3-header-stripe {
+    background: #111;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    padding: 10px 18px;
+    gap: 20px;
+  }
+
+  .c3-brand {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    color: #fff;
+    letter-spacing: 0.15em;
+  }
+
+  .c3-nfl-badge {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 9px;
+    color: #888;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    border: 1px solid #444;
+    padding: 3px 8px;
+  }
+
+  .c3-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-bottom: 1px solid #111;
+  }
+
+  .c3-cell {
+    padding: 10px 18px;
+    border-right: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+
+  .c3-cell:last-child { border-right: none; }
+
+  .c3-cell-label {
+    font-size: 8px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #999;
+  }
+
+  .c3-cell-value {
+    font-size: 13px;
+    font-weight: 700;
+    color: #111;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .c3-diff-value {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .c3-diff-pips {
+    display: flex;
+    gap: 3px;
+  }
+
+  .c3-diff-pips span {
+    display: block;
+    width: 10px;
+    height: 10px;
+    border: 1.5px solid #111;
+  }
+
+  .c3-diff-pips span.on { background: #111; }
+
+  .c3-question-block {
+    padding: 16px 18px 18px;
+  }
+
+  .c3-q-number {
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    color: #aaa;
+    margin-bottom: 4px;
+  }
+
+  .c3-question-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 34px;
+    letter-spacing: 0.06em;
+    color: #111;
+    line-height: 1;
+    margin-bottom: 6px;
+  }
+
+  .c3-instructions {
+    font-size: 11px;
+    color: #555;
+    letter-spacing: 0.04em;
+    border-left: 3px solid #111;
+    padding-left: 10px;
+    line-height: 1.5;
+  }
+
+  /* ============================================================
+     PAGE LABELS
+  ============================================================ */
+  .concept-label {
+    width: 680px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .concept-label span {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #888;
+    white-space: nowrap;
+  }
+
+  .concept-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #333;
+  }
+</style>
+</head>
+<body>
+
+  <!-- ===================== CONCEPT 1 ===================== -->
+  <div class="concept-label"><span>Concept 01 — Newspaper</span></div>
+  <div class="concept-1">
+    <div class="c1-top-bar">
+      <span>Do You Know Ball? · NFL Edition</span>
+      <span>Vol. I</span>
+    </div>
+    <div class="c1-masthead">
+      <div class="brand">Do You Know Ball?</div>
+      <div class="tagline">The NFL Trivia Challenge · Official Question Book</div>
+    </div>
+    <div class="c1-meta-row">
+      <div class="c1-category-pill">Awards &amp; Honors</div>
+      <div class="c1-difficulty">
+        Die-Hard
+        <div class="c1-dots">
+          <span class="filled"></span>
+          <span class="filled"></span>
+          <span class="filled"></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+    <div class="c1-body">
+      <div class="c1-question-title">Name the Last 15 Super Bowl MVPs</div>
+      <div class="c1-instructions">List all 15 players in order, most recent first. One point per correct answer. Partial credit awarded.</div>
+    </div>
+  </div>
+
+  <!-- ===================== CONCEPT 2 ===================== -->
+  <div class="concept-label"><span>Concept 02 — Sport Magazine</span></div>
+  <div class="concept-2">
+    <div class="c2-slash-bg"></div>
+    <div class="c2-content">
+      <div class="c2-brand-row">
+        <div class="c2-brand-name">Do You Know Ball?</div>
+        <div class="c2-brand-divider"></div>
+        <div class="c2-page-num">NFL · Q.14</div>
+      </div>
+      <div class="c2-question-title">Name the Last<br><em>15 Super Bowl</em><br>MVPs</div>
+      <div class="c2-instructions">Most recent first — one point per correct name</div>
+      <div class="c2-tags">
+        <div class="c2-tag filled">Awards</div>
+        <div class="c2-tag">History</div>
+        <div class="c2-difficulty-bar">
+          <span class="c2-bar-label">Die-Hard</span>
+          <div class="c2-bars">
+            <span class="active"></span>
+            <span class="active"></span>
+            <span class="active"></span>
+            <span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================== CONCEPT 3 ===================== -->
+  <div class="concept-label"><span>Concept 03 — Scorecard / Stat Sheet</span></div>
+  <div class="concept-3">
+    <div class="c3-header-stripe">
+      <div class="c3-brand">Do You Know Ball? — NFL Trivia</div>
+      <div class="c3-nfl-badge">NFL · Vol. I</div>
+    </div>
+    <div class="c3-grid">
+      <div class="c3-cell">
+        <div class="c3-cell-label">Category</div>
+        <div class="c3-cell-value">Awards</div>
+      </div>
+      <div class="c3-cell">
+        <div class="c3-cell-label">Type</div>
+        <div class="c3-cell-value">List — 15</div>
+      </div>
+      <div class="c3-cell">
+        <div class="c3-cell-label">Points</div>
+        <div class="c3-cell-value">15 pts</div>
+      </div>
+      <div class="c3-cell">
+        <div class="c3-cell-label">Difficulty</div>
+        <div class="c3-diff-value">
+          <div class="c3-diff-pips">
+            <span class="on"></span>
+            <span class="on"></span>
+            <span class="on"></span>
+            <span></span>
+          </div>
+          <div class="c3-cell-value" style="font-size:11px">Die-Hard</div>
+        </div>
+      </div>
+    </div>
+    <div class="c3-question-block">
+      <div class="c3-q-number">Question 014</div>
+      <div class="c3-question-title">Name the Last 15 Super Bowl MVPs</div>
+      <div class="c3-instructions">List all 15 players in order, most recent first.<br>One point per correct answer — partial credit awarded.</div>
+    </div>
+  </div>
+
+</body>
+</html>
