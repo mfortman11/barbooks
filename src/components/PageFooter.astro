@@ -18,16 +18,17 @@ const isOdd = side === 'right';
 ---
 
 <!-- Print footer that appears at bottom of printed pages -->
-<div class={`print-footer ${isOdd ? 'page-left' : 'page-right'}`}>
-  <div class="page-number-slot left-slot">
-    {isOdd && <span>{currentPage}</span>}
-  </div>
-  <div class="qr-container">
-    {qrSvg && <Fragment set:html={qrSvg} />}
-    <div class="answer-key-label">Scan for Answer Key</div>
-  </div>
-  <div class="page-number-slot right-slot">
-    {!isOdd && <span>{currentPage}</span>}
+<div class="print-footer">
+  <div class="footer-stripe">
+    <div class="page-num-slot">
+      {isOdd ? <span class="page-num">{currentPage}</span> : <span class="answer-key-label">Scan for Answer Key</span>}
+    </div>
+    <div class="qr-container">
+      {qrSvg && <Fragment set:html={qrSvg} />}
+    </div>
+    <div class="page-num-slot right">
+      {!isOdd ? <span class="page-num">{currentPage}</span> : <span class="answer-key-label">Scan for Answer Key</span>}
+    </div>
   </div>
 </div>
 
@@ -38,45 +39,55 @@ const isOdd = side === 'right';
 
   @media print {
     .print-footer {
-      display: flex !important;
+      display: block !important;
+      margin-top: auto;
+      margin-left: -0.75in;
+      margin-right: -0.75in;
+      margin-bottom: -0.5in;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
+    }
+
+    .footer-stripe {
+      background: transparent;
+      border-top: 2px solid #111;
+      display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0;
-      font-size: 12px;
-      color: black;
-      background: none;
-      border: none;
-      margin-top: auto;
+      padding: 10px 0.75in;
+      print-color-adjust: exact;
+      -webkit-print-color-adjust: exact;
     }
 
-    .page-number-slot {
-      width: 60px;
-      font-size: 12px;
-    }
-
-    .left-slot {
-      text-align: left;
-    }
-
-    .right-slot {
-      text-align: right;
-    }
-
-    .qr-container {
+    .page-num-slot {
+      width: 40px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 2px;
+    }
+
+    .page-num-slot.right {
+      justify-content: flex-end;
+    }
+
+    .page-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 18px;
+      color: #111;
+      letter-spacing: 0.1em;
     }
 
     .qr-container svg {
-      width: 48px;
-      height: 48px;
+      width: 36px;
+      height: 36px;
+      display: block;
     }
 
     .answer-key-label {
-      font-size: 9px;
-      text-align: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 7px;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #999;
     }
   }
 </style>

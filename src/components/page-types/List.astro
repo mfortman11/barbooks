@@ -40,7 +40,7 @@ function getClueText(item: ListItem, index: number): string {
   <div class={`grid gap-x-8 gap-y-3 print:gap-y-2`} style={`grid-template-columns: repeat(${columns}, 1fr)`}>
     {items.map((item, index) => (
       <div class="flex items-center">
-        <span class="font-bold text-gray-800 print:text-black w-16 text-sm print:text-xs flex-shrink-0">
+        <span class="clue-text font-bold text-gray-800 print:text-black w-16 text-sm print:text-xs flex-shrink-0">
           {getClueText(item, index)}:
         </span>
         <div class="flex-1 border-b border-gray-300 print:border-black ml-2 h-5 print:h-4"></div>
@@ -64,3 +64,11 @@ function getClueText(item: ListItem, index: number): string {
     </div>
   )}
 </div>
+
+<style>
+  @media print {
+    .clue-text {
+      font-family: 'IBM Plex Mono', monospace;
+    }
+  }
+</style>
