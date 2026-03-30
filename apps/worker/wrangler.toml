@@ -1,0 +1,17 @@
+name = "trivia-redirector"
+main = "src/index.ts"
+compatibility_date = "2024-01-01"
+
+[[kv_namespaces]]
+binding = "REDIRECTS"
+id = "your-kv-namespace-id"  # Replace after: wrangler kv:namespace create REDIRECTS
+
+[[analytics_engine_datasets]]
+binding = "ANALYTICS"
+dataset = "trivia_scans"
+
+[vars]
+ENVIRONMENT = "production"
+
+# ADMIN_TOKEN is a secret — never stored here
+# Set via: wrangler secret put ADMIN_TOKEN
