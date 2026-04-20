@@ -3,6 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import List from '../../components/page-types/List.astro';
 import Matchup from '../../components/page-types/Matchup.astro';
 import Teams from '../../components/page-types/Teams.astro';
+import PlayoffBracket from '../../components/PlayoffBracket.astro';
 import { booksConfig } from '../../utils/pageConfig.js';
 import type { GetStaticPaths } from 'astro';
 import type { PageConfiguration } from '../../utils/pageTypes.js';
@@ -39,7 +40,7 @@ if (!bookConfig.pageExists(pageNumber)) {
 const pageConfiguration: PageConfiguration = bookConfig.getPageConfiguration(pageNumber);
 const answerKeyUrl: string = bookConfig.getAnswerKeyUrl(pageNumber);
 const title: string = `${bookId.toUpperCase()} Book - Page ${pageNumber}`;
-const hasHeaderFields = pageConfiguration.type === 'list' || pageConfiguration.type === 'matchup' || pageConfiguration.type === 'teams';
+const hasHeaderFields = pageConfiguration.type === 'list' || pageConfiguration.type === 'matchup' || pageConfiguration.type === 'teams' || pageConfiguration.type === 'bracket';
 const pageTitle = hasHeaderFields ? pageConfiguration.title : undefined;
 const pageDescription = hasHeaderFields ? pageConfiguration.description : undefined;
 const category = hasHeaderFields ? pageConfiguration.category : undefined;
@@ -73,6 +74,10 @@ const pageType = pageConfiguration.type;
       
       {pageConfiguration.type === 'teams' && (
         <Teams bookId={bookId} />
+      )}
+
+      {pageConfiguration.type === 'bracket' && (
+        <PlayoffBracket clueStyle={pageConfiguration.clueStyle} />
       )}
 
       {(pageConfiguration.type === 'text' || pageConfiguration.type === 'custom') && (
