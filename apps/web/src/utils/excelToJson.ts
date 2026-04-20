@@ -73,7 +73,19 @@ interface TeamsPage {
   actionContent?: ActionContent;
 }
 
-type PageConfig = ListPage | MatchupPage | TextPage | TeamsPage;
+interface BracketPage {
+  type:          'bracket';
+  title:         string;
+  description:   string;
+  category?:     string;
+  difficulty?:   PageDifficulty;
+  /** Raw column G value passed straight through to the component */
+  clueStyle:     string;
+  answerKeyUrl:  string;
+  actionContent?: ActionContent;
+}
+
+type PageConfig = ListPage | MatchupPage | TextPage | TeamsPage | BracketPage;
 
 // ── Helper: parse the "itemsNote" column into an items array ──────────────────
 function parseItemsNote(note: string): { clue: string | number }[] {
@@ -218,6 +230,22 @@ function processBook(bookId: string, excelPath: string) {
         answerKeyUrl: url,
         ...(actionContent ? { actionContent } : {}),
       });
+    } else if (type === 'bracket') {
+      const clueStyle = String(row.itemsNote).trim();
+      if (!clueStyle) {
+        console.warn(`  ⚠️  [${bookId}] Page ${pageNum} is bracket but column G is empty.`);
+        warnings++;
+      }
+      pages.push({
+        type:         'bracket',
+        title,
+        description:  desc,
+        ...(category   ? { category }   : {}),
+        ...(difficulty ? { difficulty } : {}),
+        clueStyle,
+        answerKeyUrl: url,
+        ...(actionContent ? { actionContent } : {}),
+      });
     } else {
       console.warn(`  ⚠️  [${bookId}] Page ${pageNum} has unknown type "${type}".`);
       warnings++;
@@ -291,6 +319,18 @@ function serializePage(page: PageConfig): string {
     lines.push(`  description: ${JSON.stringify(page.description)},`);
     if (page.category)   lines.push(`  category: ${JSON.stringify(page.category)},`);
     if (page.difficulty) lines.push(`  difficulty: '${page.difficulty}',`);
+    lines.push(`  answerKeyUrl: ${JSON.stringify(page.answerKeyUrl)},`);
+    if (page.actionContent) {
+      const acStr = serializeActionContent(page.actionContent);
+      lines.push(`  actionContent: ${acStr.split('\n').join('\n  ')}`);
+    }
+  } else if (page.type === 'bracket') {
+    lines.push(`  type: 'bracket',`);
+    lines.push(`  title: ${JSON.stringify(page.title)},`);
+    lines.push(`  description: ${JSON.stringify(page.description)},`);
+    if (page.category)   lines.push(`  category: ${JSON.stringify(page.category)},`);
+    if (page.difficulty) lines.push(`  difficulty: '${page.difficulty}',`);
+    lines.push(`  clueStyle: ${JSON.stringify(page.clueStyle)},`);
     lines.push(`  answerKeyUrl: ${JSON.stringify(page.answerKeyUrl)},`);
     if (page.actionContent) {
       const acStr = serializeActionContent(page.actionContent);

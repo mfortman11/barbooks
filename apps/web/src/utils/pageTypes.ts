@@ -1,5 +1,5 @@
 // Define different page types
-export type PageType = 'list' | 'text' | 'custom' | 'matchup' | 'teams';
+export type PageType = 'list' | 'text' | 'custom' | 'matchup' | 'teams' | 'bracket';
 
 export interface ListItem {
   // Flexible clue - can be any string or number
@@ -80,7 +80,19 @@ export interface TeamsPageConfig {
   actionContent?: ActionContent;
 }
 
-export type PageConfiguration = ListPageConfig | TextPageConfig | CustomPageConfig | MatchupPageConfig | TeamsPageConfig;
+export interface BracketPageConfig {
+  type: 'bracket';
+  title: string;
+  description?: string;
+  category?: string;
+  difficulty?: PageDifficulty;
+  /** Raw column G value: "{prefix}: team1, team2, ..." or "...AFC teams... / ...NFC teams..." */
+  clueStyle: string;
+  answerKeyUrl?: string;
+  actionContent?: ActionContent;
+}
+
+export type PageConfiguration = ListPageConfig | TextPageConfig | CustomPageConfig | MatchupPageConfig | TeamsPageConfig | BracketPageConfig;
 
 export interface PageConfig {
   pages: PageConfiguration[];

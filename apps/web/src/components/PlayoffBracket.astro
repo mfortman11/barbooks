@@ -1,0 +1,271 @@
+---
+/**
+ * PlayoffBracket.astro — simple SVG tournament bracket.
+ *
+ * clueStyle format:
+ *   "1990-2019: AFC1, ..., AFC6 / NFC1, ..., NFC6"
+ *   "2020+:     AFC1, ..., AFC7 / NFC1, ..., NFC7"
+ */
+
+interface Props { clueStyle: string; }
+const { clueStyle } = Astro.props;
+
+// ── Parse ──────────────────────────────────────────────────────────────────────
+const colonIdx = clueStyle.indexOf(':');
+const prefix   = clueStyle.slice(0, colonIdx).trim();
+const teamsStr = clueStyle.slice(colonIdx + 1).trim();
+const is14     = prefix === '2020+';
+const hasBoth  = teamsStr.includes('/');
+
+let afcSeeds: string[], nfcSeeds: string[];
+if (hasBoth) {
+  const [a, n] = teamsStr.split('/');
+  afcSeeds = a.split(',').map(s => s.trim()).filter(Boolean);
+  nfcSeeds = n.split(',').map(s => s.trim()).filter(Boolean);
+} else {
+  afcSeeds = teamsStr.split(',').map(s => s.trim()).filter(Boolean);
+  nfcSeeds = [];
+}
+
+// ── Layout constants ───────────────────────────────────────────────────────────
+const ROW   = 84;           // height per slot row
+const COL   = hasBoth ? 100 : 130; // column width (blank line width)
+const CGAP  = 20;           // horizontal gap between columns (connector space)
+const VGAP  = 48;           // extra vertical gap between game pairs in same round
+const LW    = 1.5;
+const FONT  = 9;            // font size in pt
+const SB_W  = 70;           // super bowl column width
+
+// ── Helpers ────────────────────────────────────────────────────────────────────
+// A "slot" is one team entry: label text + blank line underneath
+// y is the vertical center of the slot
+function slot(x: number, y: number, w: number, label: string): string {
+  const parts: string[] = [];
+  if (label) {
+    parts.push(`<text x="${x}" y="${y - 4}" font-size="${FONT}pt" fill="#222" dominant-baseline="auto">${label}</text>`);
+  }
+  parts.push(`<line x1="${x}" y1="${y + 2}" x2="${x + w}" y2="${y + 2}" stroke="#444" stroke-width="${LW}" />`);
+  return parts.join('\n');
+}
+
+// Bracket connector: joins two slots (at their y centers) and outputs a line to the next round
+// rightX = right edge of current column, y1/y2 = centers of top/bottom slot
+function connector(rightX: number, y1: number, y2: number): string {
+  const midY = (y1 + y2) / 2;
+  return [
+    `<line x1="${rightX}" y1="${y1 + 2}" x2="${rightX}" y2="${y2 + 2}" stroke="#333" stroke-width="${LW}" />`,
+    `<line x1="${rightX}" y1="${midY + 2}" x2="${rightX + CGAP}" y2="${midY + 2}" stroke="#333" stroke-width="${LW}" />`,
+  ].join('\n');
+}
+
+// ── Build one conference bracket ───────────────────────────────────────────────
+// Returns SVG string + total dimensions. seeds[0]=seed1, seeds[1]=seed2, etc.
+// rtl=true mirrors x coordinates (for NFC facing Super Bowl)
+function confBracket(seeds: string[], ox: number, oy: number, rtl: boolean, mirrorW: number): { svg: string; w: number; h: number } {
+  const fx = (x: number) => rtl ? ox + mirrorW - x : ox + x;
+  const fxRange = (x: number, w: number) => rtl ? fx(x + w) : fx(x);
+  const parts: string[] = [];
+
+  const addSlot = (x: number, y: number, w: number, label: string, seed?: number) => {
+    const sx = fxRange(x, w);
+    const tx = rtl ? sx + w - 2 : sx;
+    const anchor = rtl ? 'end' : 'start';
+    if (seed) {
+      const seedText = `#${seed}`;
+      const seedLabel = label ? `${seedText}  ${label}` : seedText;
+      parts.push(`<text x="${tx}" y="${oy + y - 4}" font-size="${FONT}pt" fill="#222" dominant-baseline="auto" text-anchor="${anchor}"><tspan font-weight="700" font-size="7pt" fill="#666">${seedText}</tspan>  ${label}</text>`);
+    } else if (label) {
+      parts.push(`<text x="${tx}" y="${oy + y - 4}" font-size="${FONT}pt" fill="#222" dominant-baseline="auto" text-anchor="${anchor}">${label}</text>`);
+    }
+    parts.push(`<line x1="${sx}" y1="${oy + y + 2}" x2="${sx + w}" y2="${oy + y + 2}" stroke="#444" stroke-width="${LW}" />`);
+  };
+
+  const addConnector = (x: number, y1: number, y2: number) => {
+    const cx = fx(x);
+    const nextX = fx(x + (rtl ? -CGAP : 0));
+    const fromX = rtl ? cx : cx;
+    const toX = rtl ? cx - CGAP : cx + CGAP;
+    const midY = oy + (y1 + y2) / 2 + 2;
+    parts.push(`<line x1="${fromX}" y1="${oy + y1 + 2}" x2="${fromX}" y2="${oy + y2 + 2}" stroke="#333" stroke-width="${LW}" />`);
+    parts.push(`<line x1="${fromX}" y1="${midY}" x2="${toX}" y2="${midY}" stroke="#333" stroke-width="${LW}" />`);
+  };
+
+  const t = (i: number) => seeds[i] || '';
+
+  if (is14) {
+    // ── 14-team (2020+) ──
+    // WC: 3 games — #2v#7, #3v#6, #4v#5
+    const wcX = 0;
+    const wc1y1 = 0, wc1y2 = ROW;
+    const wc2y1 = ROW * 2 + VGAP, wc2y2 = ROW * 3 + VGAP;
+    const wc3y1 = ROW * 4 + VGAP * 2, wc3y2 = ROW * 5 + VGAP * 2;
+
+    addSlot(wcX, wc1y1, COL, t(1), 2); addSlot(wcX, wc1y2, COL, t(6), 7);
+    addSlot(wcX, wc2y1, COL, t(2), 3); addSlot(wcX, wc2y2, COL, t(5), 6);
+    addSlot(wcX, wc3y1, COL, t(3), 4); addSlot(wcX, wc3y2, COL, t(4), 5);
+
+    // WC connectors
+    addConnector(wcX + COL, wc1y1, wc1y2);
+    addConnector(wcX + COL, wc2y1, wc2y2);
+    addConnector(wcX + COL, wc3y1, wc3y2);
+
+    // DIV: 2 games (reseeded — no fixed pairing from WC)
+    const divX = wcX + COL + CGAP;
+    const DIV_SHIFT = ROW / 2;
+    const wcAllMid = (wc1y1 + wc3y2) / 2 + DIV_SHIFT;
+    const div1y1 = wcAllMid - ROW * 2 - VGAP / 2;
+    const div1y2 = div1y1 + ROW;
+    const div2y1 = wcAllMid + VGAP / 2;
+    const div2y2 = div2y1 + ROW;
+
+    addSlot(divX, div1y1, COL, t(0), 1); addSlot(divX, div1y2, COL, '');
+    addSlot(divX, div2y1, COL, ''); addSlot(divX, div2y2, COL, '');
+
+    addConnector(divX + COL, div1y1, div1y2);
+    addConnector(divX + COL, div2y1, div2y2);
+
+    // DIV winners combine → CC
+    const div1Mid = (div1y1 + div1y2) / 2;
+    const div2Mid = (div2y1 + div2y2) / 2;
+    const divCombX = divX + COL + CGAP;
+    const fdcx = fx(divCombX);
+    const fdce = rtl ? fdcx - CGAP : fdcx + CGAP;
+    const divCombMidY = oy + (div1Mid + div2Mid) / 2 + 2;
+    parts.push(`<line x1="${fdcx}" y1="${oy + div1Mid + 2}" x2="${fdcx}" y2="${oy + div2Mid + 2}" stroke="#333" stroke-width="${LW}" />`);
+    parts.push(`<line x1="${fdcx}" y1="${divCombMidY}" x2="${fdce}" y2="${divCombMidY}" stroke="#333" stroke-width="${LW}" />`);
+
+    // CC slot
+    const ccX = divX + COL + CGAP * 2;
+    const ccY = (div1Mid + div2Mid) / 2;
+    addSlot(ccX, ccY, COL, '');
+
+    const totalW = ccX + COL;
+    const totalH = wc3y2 + ROW;
+    return { svg: parts.join('\n'), w: totalW, h: totalH };
+
+  } else {
+    // ── 12-team (1990-2019) ──
+    // WC: 2 games — #3v#6, #4v#5
+    const wcX = 0;
+    const wc1y1 = 0, wc1y2 = ROW;
+    const wc2y1 = ROW * 2 + VGAP, wc2y2 = ROW * 3 + VGAP;
+
+    addSlot(wcX, wc1y1, COL, t(2), 3); addSlot(wcX, wc1y2, COL, t(5), 6);
+    addSlot(wcX, wc2y1, COL, t(3), 4); addSlot(wcX, wc2y2, COL, t(4), 5);
+
+    addConnector(wcX + COL, wc1y1, wc1y2);
+    addConnector(wcX + COL, wc2y1, wc2y2);
+
+    // DIV: 2 games — #1 vs WC1 winner, #2 vs WC2 winner
+    const divX = wcX + COL + CGAP;
+    const wc1Mid = (wc1y1 + wc1y2) / 2;
+    const wc2Mid = (wc2y1 + wc2y2) / 2;
+    const div1y1 = wc1Mid - ROW / 2;
+    const div1y2 = div1y1 + ROW;
+    const div2y1 = wc2Mid - ROW / 2;
+    const div2y2 = div2y1 + ROW;
+
+    addSlot(divX, div1y1, COL, t(0), 1); addSlot(divX, div1y2, COL, '');
+    addSlot(divX, div2y1, COL, t(1), 2); addSlot(divX, div2y2, COL, '');
+
+    addConnector(divX + COL, div1y1, div1y2);
+    addConnector(divX + COL, div2y1, div2y2);
+
+    // DIV winners combine → CC
+    const div1Mid = (div1y1 + div1y2) / 2;
+    const div2Mid = (div2y1 + div2y2) / 2;
+    const divCombX = divX + COL + CGAP;
+    const fdcx = fx(divCombX);
+    const fdce = rtl ? fdcx - CGAP : fdcx + CGAP;
+    const divCombMidY = oy + (div1Mid + div2Mid) / 2 + 2;
+    parts.push(`<line x1="${fdcx}" y1="${oy + div1Mid + 2}" x2="${fdcx}" y2="${oy + div2Mid + 2}" stroke="#333" stroke-width="${LW}" />`);
+    parts.push(`<line x1="${fdcx}" y1="${divCombMidY}" x2="${fdce}" y2="${divCombMidY}" stroke="#333" stroke-width="${LW}" />`);
+
+    // CC slot
+    const ccX = divX + COL + CGAP * 2;
+    const ccY = (div1Mid + div2Mid) / 2;
+    addSlot(ccX, ccY, COL, '');
+
+    const totalW = ccX + COL;
+    const totalH = wc2y2 + ROW;
+    return { svg: parts.join('\n'), w: totalW, h: totalH };
+  }
+}
+
+// ── Round headers ──────────────────────────────────────────────────────────────
+function roundHeaders(ox: number, oy: number, rtl: boolean, mirrorW: number, confW: number): string {
+  const fx = (x: number) => rtl ? ox + mirrorW - x : ox + x;
+  const style = 'font-size:7pt;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;fill:#555;';
+  const parts: string[] = [];
+
+  const wcMid = COL / 2;
+  const divX = is14 ? COL + CGAP * 2 : COL + CGAP;
+  const divMid = divX + COL / 2;
+  const ccX = is14 ? divX + COL + CGAP * 2 : divX + COL + CGAP * 2;
+  const ccMid = ccX + COL / 2;
+
+  parts.push(`<text x="${fx(wcMid)}" y="${oy}" text-anchor="middle" style="${style}">Wild Card</text>`);
+  parts.push(`<text x="${fx(divMid)}" y="${oy}" text-anchor="middle" style="${style}">Divisional</text>`);
+  parts.push(`<text x="${fx(ccMid)}" y="${oy}" text-anchor="middle" style="${style}">Conf. Champ</text>`);
+  return parts.join('\n');
+}
+
+// ── Compose final SVG ──────────────────────────────────────────────────────────
+const HEADER_H = 20;
+const CONF_LABEL_H = 16;
+const HEADER_GAP = 24;
+const TOP_PAD = hasBoth ? HEADER_H + CONF_LABEL_H + HEADER_GAP : HEADER_H + HEADER_GAP;
+
+let svgWidth: number;
+let svgHeight: number;
+let svgContent: string;
+
+if (hasBoth) {
+  const afcResult = confBracket(afcSeeds, 0, TOP_PAD, false, 0);
+  const confW = afcResult.w;
+  const totalW = confW * 2 + SB_W;
+  const nfcOX = confW + SB_W;
+
+  const nfcResult = confBracket(nfcSeeds, nfcOX, TOP_PAD, true, confW);
+
+  svgWidth = totalW;
+  svgHeight = Math.max(afcResult.h, nfcResult.h) + TOP_PAD;
+
+  const parts: string[] = [];
+  const confStyle = 'font-size:8pt;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;fill:#555;';
+  parts.push(`<text x="${confW / 2}" y="${CONF_LABEL_H - 4}" text-anchor="middle" style="${confStyle}">AFC</text>`);
+  parts.push(`<text x="${nfcOX + confW / 2}" y="${CONF_LABEL_H - 4}" text-anchor="middle" style="${confStyle}">NFC</text>`);
+
+  parts.push(roundHeaders(0, CONF_LABEL_H + HEADER_H - 6, false, 0, confW));
+  parts.push(roundHeaders(nfcOX, CONF_LABEL_H + HEADER_H - 6, true, confW, confW));
+
+  parts.push(afcResult.svg);
+  parts.push(nfcResult.svg);
+
+  // Super Bowl
+  const sbX = confW;
+  const sbCY = TOP_PAD + Math.max(afcResult.h, nfcResult.h) / 2;
+  const sbLabelStyle = 'font-size:7pt;font-weight:700;text-transform:uppercase;letter-spacing:0.08em;fill:#555;';
+  parts.push(`<text x="${sbX + SB_W / 2}" y="${sbCY - 10}" text-anchor="middle" style="${sbLabelStyle}">Super Bowl</text>`);
+  parts.push(`<line x1="${sbX + 10}" y1="${sbCY + 2}" x2="${sbX + SB_W - 10}" y2="${sbCY + 2}" stroke="#444" stroke-width="${LW}" />`);
+
+  svgContent = parts.join('\n');
+} else {
+  const result = confBracket(afcSeeds, 0, TOP_PAD, false, 0);
+  svgWidth = result.w;
+  svgHeight = result.h + TOP_PAD;
+
+  const parts: string[] = [];
+  parts.push(roundHeaders(0, HEADER_H - 6, false, 0, result.w));
+  parts.push(result.svg);
+  svgContent = parts.join('\n');
+}
+---
+
+<svg
+  viewBox={`0 0 ${svgWidth} ${svgHeight}`}
+  width="100%"
+  style={`max-width:${svgWidth}px`}
+  xmlns="http://www.w3.org/2000/svg"
+  set:html={svgContent}
+/>
