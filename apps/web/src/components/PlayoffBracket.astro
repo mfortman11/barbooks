@@ -193,7 +193,7 @@ function confBracket(seeds: string[], ox: number, oy: number, rtl: boolean, mirr
 }
 
 // ── Round headers ──────────────────────────────────────────────────────────────
-function roundHeaders(ox: number, oy: number, rtl: boolean, mirrorW: number, confW: number): string {
+function roundHeaders(ox: number, oy: number, rtl: boolean, mirrorW: number, confW: number, conf?: 'AFC' | 'NFC'): string {
   const fx = (x: number) => rtl ? ox + mirrorW - x : ox + x;
   const style = 'font-size:7pt;font-weight:700;text-transform:uppercase;letter-spacing:0.07em;fill:#555;';
   const parts: string[] = [];
@@ -204,9 +204,10 @@ function roundHeaders(ox: number, oy: number, rtl: boolean, mirrorW: number, con
   const ccX = is14 ? divX + COL + CGAP * 2 : divX + COL + CGAP * 2;
   const ccMid = ccX + COL / 2;
 
+  const champLabel = conf ? `${conf} Championship` : 'Conf. Champ';
   parts.push(`<text x="${fx(wcMid)}" y="${oy}" text-anchor="middle" style="${style}">Wild Card</text>`);
   parts.push(`<text x="${fx(divMid)}" y="${oy}" text-anchor="middle" style="${style}">Divisional</text>`);
-  parts.push(`<text x="${fx(ccMid)}" y="${oy}" text-anchor="middle" style="${style}">Conf. Champ</text>`);
+  parts.push(`<text x="${fx(ccMid)}" y="${oy}" text-anchor="middle" style="${style}">${champLabel}</text>`);
   return parts.join('\n');
 }
 
@@ -236,8 +237,8 @@ if (hasBoth) {
   parts.push(`<text x="${confW / 2}" y="${CONF_LABEL_H - 4}" text-anchor="middle" style="${confStyle}">AFC</text>`);
   parts.push(`<text x="${nfcOX + confW / 2}" y="${CONF_LABEL_H - 4}" text-anchor="middle" style="${confStyle}">NFC</text>`);
 
-  parts.push(roundHeaders(0, CONF_LABEL_H + HEADER_H - 6, false, 0, confW));
-  parts.push(roundHeaders(nfcOX, CONF_LABEL_H + HEADER_H - 6, true, confW, confW));
+  parts.push(roundHeaders(0, CONF_LABEL_H + HEADER_H - 6, false, 0, confW, 'AFC'));
+  parts.push(roundHeaders(nfcOX, CONF_LABEL_H + HEADER_H - 6, true, confW, confW, 'NFC'));
 
   parts.push(afcResult.svg);
   parts.push(nfcResult.svg);

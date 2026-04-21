@@ -118,7 +118,28 @@ const uniqueDifficulties = [...new Set(pages.map(p => p.difficulty).filter(Boole
   const difficultyFilter = document.getElementById('difficulty-filter');
   const pageSelect = document.getElementById('page-select');
 
-  function applyFilters() {
+  function getFilterParams() {
+    const params = new URLSearchParams();
+    if (typeFilter?.value) params.set('type', typeFilter.value);
+    if (categoryFilter?.value) params.set('category', categoryFilter.value);
+    if (difficultyFilter?.value) params.set('difficulty', difficultyFilter.value);
+    return params;
+  }
+
+  function navigateTo(pageNum) {
+    const params = getFilterParams();
+    const qs = params.toString();
+    window.location.href = `/barbooks/${bookId}/${pageNum}/` + (qs ? `?${qs}` : '');
+  }
+
+  function restoreFilters() {
+    const params = new URLSearchParams(window.location.search);
+    if (typeFilter && params.has('type')) typeFilter.value = params.get('type');
+    if (categoryFilter && params.has('category')) categoryFilter.value = params.get('category');
+    if (difficultyFilter && params.has('difficulty')) difficultyFilter.value = params.get('difficulty');
+  }
+
+  function applyFilters(navigate = false) {
     const selectedType = typeFilter ? typeFilter.value : '';
     const selectedCategory = categoryFilter ? categoryFilter.value : '';
     const selectedDifficulty = difficultyFilter ? difficultyFilter.value : '';
@@ -128,20 +149,23 @@ const uniqueDifficulties = [...new Set(pages.map(p => p.difficulty).filter(Boole
       const diffMatch = !selectedDifficulty || opt.dataset.difficulty === selectedDifficulty;
       opt.hidden = !(typeMatch && catMatch && diffMatch);
     });
-    if (pageSelect.selectedOptions[0]?.hidden) {
+    if (navigate && pageSelect.selectedOptions[0]?.hidden) {
       const first = Array.from(pageSelect.options).find(o => !o.hidden);
-      if (first) pageSelect.value = first.value;
+      if (first) navigateTo(first.value);
     }
   }
 
   if (pageSelect) {
-    typeFilter?.addEventListener('change', applyFilters);
-    categoryFilter?.addEventListener('change', applyFilters);
-    difficultyFilter?.addEventListener('change', applyFilters);
+    restoreFilters();
+    applyFilters();
+
+    typeFilter?.addEventListener('change', () => applyFilters(true));
+    categoryFilter?.addEventListener('change', () => applyFilters(true));
+    difficultyFilter?.addEventListener('change', () => applyFilters(true));
 
     pageSelect.addEventListener('change', () => {
       const pageNum = pageSelect.value;
-      if (pageNum) window.location.href = `/barbooks/${bookId}/${pageNum}/`;
+      if (pageNum) navigateTo(pageNum);
     });
   }
 </script>
