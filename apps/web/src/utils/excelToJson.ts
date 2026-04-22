@@ -166,7 +166,7 @@ function processBook(bookId: string, excelPath: string) {
     const title      = String(row.title).trim();
     const desc       = String(row.description).trim();
     const columns    = Number(row.columns) || 1;
-    const url        = String(row.answerKeyUrl).trim();
+    const url        = `https://dykbtrivia.com/${bookId}/${pageNum}`;
     const categoryRaw  = String(row.category).trim();
     const difficultyRaw = String(row.difficulty).trim();
     const category   = categoryRaw || undefined;

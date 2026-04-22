@@ -18,6 +18,18 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Question pages do **not** include printed answers. Each page has an `answerKeyUrl` that is rendered as a QR code in the print footer — readers scan it to check their answers.
 
+### Answer key redirect flow
+
+QR codes in the book point to **`https://dykbtrivia.com/{book}/{pageNum}`** (e.g., `dykbtrivia.com/nfl/1`). A Cloudflare Worker at that domain looks up the page number in KV and redirects to the real answer key URL (e.g., a pro-football-reference page).
+
+**The Excel `answerKeyUrl` column stores the real destination URLs for human reference only.** The sync script (`excelToJson.ts`) does **not** copy these URLs into `pageConfig.ts` — instead it generates redirect URLs (`https://dykbtrivia.com/{book}/{pageNum}`) so the QR codes always go through the worker.
+
+To populate/update the worker's KV store with the real URLs from Excel, run:
+```sh
+cd apps/web && npx tsx scripts/seed-kv.ts
+cd ../worker && npx wrangler kv bulk put --namespace-id <id> kv-seed.json
+```
+
 ### Page types
 
 | Type | Description | Example |

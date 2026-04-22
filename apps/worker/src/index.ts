@@ -5,7 +5,7 @@ import { renderDashboard } from './dashboard.js';
 
 export interface Env {
   REDIRECTS: KVNamespace;
-  ANALYTICS: AnalyticsEngineDataset;
+  page_scans: AnalyticsEngineDataset;
   ADMIN_TOKEN: string;
 }
 
@@ -24,10 +24,13 @@ export default {
       return handleAdmin(request, env.REDIRECTS, env.ADMIN_TOKEN);
     }
 
-    // Redirect by question number
-    const slugMatch = path.match(/^\/(\d+)$/);
-    if (slugMatch) {
-      const id = slugMatch[1];
+    // Redirect by book/page (e.g. /nfl/1) or bare page number (e.g. /1 → nfl:1)
+    const bookMatch = path.match(/^\/([a-z]+)\/(\d+)$/);
+    const bareMatch = !bookMatch && path.match(/^\/(\d+)$/);
+    const id = bookMatch ? `${bookMatch[1]}:${bookMatch[2]}`
+             : bareMatch ? `nfl:${bareMatch[1]}`
+             : null;
+    if (id) {
 
       let entry;
       try {
@@ -42,7 +45,7 @@ export default {
       }
 
       // Log non-blocking — fire and forget
-      logScan(env.ANALYTICS, id, entry, request);
+      logScan(env.page_scans, id, entry, request);
 
       return Response.redirect(entry.url, 301);
     }
