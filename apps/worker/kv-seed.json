@@ -1,0 +1,722 @@
+[
+  {
+    "key": "nfl:1",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/awards/ap-nfl-mvp-award.htm\",\"label\":\"NFL MVP Challenge\",\"category\":\"Awards\"}"
+  },
+  {
+    "key": "nfl:2",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/awards/ap-defensive-player-of-the-year.htm\",\"label\":\"NFL Defensive Player of the Year\",\"category\":\"Awards\"}"
+  },
+  {
+    "key": "nfl:3",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/awards/ap-offensive-rookie-of-the-year-award.htm\",\"label\":\"NFL Offensive Rookie of the Year\",\"category\":\"Awards\"}"
+  },
+  {
+    "key": "nfl:4",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/awards/ap-defensive-rookie-of-the-year-award.htm\",\"label\":\"NFL Defensive Rookie of the Year\",\"category\":\"Awards\"}"
+  },
+  {
+    "key": "nfl:5",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/awards/ap-comeback-player-award.htm\",\"label\":\"NFL Comeback Player of the Year\",\"category\":\"Awards\"}"
+  },
+  {
+    "key": "nfl:6",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/last-10-afc-championship-games\",\"label\":\"Last 10 AFC Championship Games\",\"category\":\"Matchups\"}"
+  },
+  {
+    "key": "nfl:7",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/last-10-nfc-championship-games\",\"label\":\"Last 10 NFC Championship Games\",\"category\":\"Matchups\"}"
+  },
+  {
+    "key": "nfl:8",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/super-bowl/\",\"label\":\"Super Bowl Matchups by Score\",\"category\":\"Matchups\"}"
+  },
+  {
+    "key": "nfl:9",
+    "value": "{\"url\":\"https://www.espn.com/nfl/history/leaders\",\"label\":\"NFL All-Time Touchdown Leaders\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:10",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/leaders/rush_yds_career.htm\",\"label\":\"Top 20 NFL Career Rushing Leaders\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:11",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/leaders/rush_yds_single_season.htm\",\"label\":\"Top 20 Single Season NFL Rushing Records\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:12",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/leaders/rec_yds_career.htm\",\"label\":\"Top 20 NFL Career Receiving Yards Leaders\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:13",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/leaders/rec_yds_single_season.htm\",\"label\":\"Top 20 Single Season NFL Receiving Yards Records\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:14",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/years/2024/fantasy.htm#fantasy::27\",\"label\":\"2024 Fantasy Football Top 10 (PPR)\",\"category\":\"Other\"}"
+  },
+  {
+    "key": "nfl:15",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-nfc-east-by-player\",\"label\":\"NFC East — Top 10 Career Passing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:16",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-nfc-east-by-player\",\"label\":\"NFC East — Top 10 Career Rushing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:17",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-nfc-east-by-player\",\"label\":\"NFC East — Top 10 Career Receiving Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:18",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-nfc-north-by-player\",\"label\":\"NFC North — Top 10 Career Passing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:19",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-nfc-north-by-player\",\"label\":\"NFC North — Top 10 Career Rushing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:20",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-nfc-north-by-player\",\"label\":\"NFC North — Top 10 Career Receiving Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:21",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-nfc-south-by-player\",\"label\":\"NFC South — Top 10 Career Passing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:22",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-nfc-south-by-player\",\"label\":\"NFC South — Top 10 Career Rushing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:23",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-nfc-south-by-player\",\"label\":\"NFC South — Top 10 Career Receiving Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:24",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-nfc-west-by-player\",\"label\":\"NFC West — Top 10 Career Passing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:25",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-nfc-west-by-player\",\"label\":\"NFC West — Top 10 Career Rushing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:26",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-nfc-west-by-player\",\"label\":\"NFC West — Top 10 Career Receiving Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:27",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-afc-east-by-player\",\"label\":\"AFC East — Top 10 Career Passing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:28",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-afc-east-by-player\",\"label\":\"AFC East — Top 10 Career Rushing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:29",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-afc-east-by-player\",\"label\":\"AFC East — Top 10 Career Receiving Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:30",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-afc-north-by-player\",\"label\":\"AFC North — Top 10 Career Passing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:31",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-afc-north-by-player\",\"label\":\"AFC North — Top 10 Career Rushing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:32",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-afc-north-by-player\",\"label\":\"AFC North — Top 10 Career Receiving Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:33",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-afc-south-by-player\",\"label\":\"AFC South — Top 10 Career Passing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:34",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-afc-south-by-player\",\"label\":\"AFC South — Top 10 Career Rushing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:35",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-afc-south-by-player\",\"label\":\"AFC South — Top 10 Career Receiving Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:36",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-afc-west-by-player\",\"label\":\"AFC West — Top 10 Career Passing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:37",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-afc-west-by-player\",\"label\":\"AFC West — Top 10 Career Rushing Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:38",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-afc-west-by-player\",\"label\":\"AFC West — Top 10 Career Receiving Yards (By Player)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:39",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-by-nfc-east-players-in-the-last-10-seasons\",\"label\":\"NFC East — Top 10 Passing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:40",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-nfc-east-players-in-the-last-10-seasons\",\"label\":\"NFC East — Top 10 Rushing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:41",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-by-nfc-east-players-in-the-last-10-seasons\",\"label\":\"NFC East — Top 10 Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:42",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-by-nfc-north-players-in-the-last-10-seasons\",\"label\":\"NFC North — Top 10 Passing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:43",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-nfc-north-players-in-the-last-10-seasons\",\"label\":\"NFC North — Top 10 Rushing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:44",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-by-nfc-north-players-in-the-last-10-seasons\",\"label\":\"NFC North — Top 10 Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:45",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-by-nfc-south-players-in-the-last-10-seasons\",\"label\":\"NFC South — Top 10 Passing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:46",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-nfc-south-players-in-the-last-10-seasons\",\"label\":\"NFC South — Top 10 Rushing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:47",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-by-nfc-south-players-in-the-last-10-seasons\",\"label\":\"NFC South — Top 10 Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:48",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-by-nfc-west-players-in-the-last-10-seasons\",\"label\":\"NFC West — Top 10 Passing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:49",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-nfc-west-players-in-the-last-10-seasons\",\"label\":\"NFC West — Top 10 Rushing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:50",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-by-nfc-west-players-in-the-last-10-seasons\",\"label\":\"NFC West — Top 10 Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:51",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-by-afc-east-players-in-the-last-10-seasons\",\"label\":\"AFC East — Top 10 Passing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:52",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-afc-east-players-in-the-last-10-seasons\",\"label\":\"AFC East — Top 10 Rushing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:53",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-by-afc-east-players-in-the-last-10-seasons\",\"label\":\"AFC East — Top 10 Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:54",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-by-afc-north-players-in-the-last-10-seasons\",\"label\":\"AFC North — Top 10 Passing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:55",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-afc-north-players-in-the-last-10-seasons\",\"label\":\"AFC North — Top 10 Rushing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:56",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-by-afc-north-players-in-the-last-10-seasons\",\"label\":\"AFC North — Top 10 Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:57",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-by-afc-south-players-in-the-last-10-seasons\",\"label\":\"AFC South — Top 10 Passing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:58",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-afc-south-players-in-the-last-10-seasons\",\"label\":\"AFC South — Top 10 Rushing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:59",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-by-afc-south-players-in-the-last-10-seasons\",\"label\":\"AFC South — Top 10 Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:60",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-yards-by-afc-west-players-in-the-last-10-seasons\",\"label\":\"AFC West — Top 10 Passing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:61",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-afc-west-players-in-the-last-10-seasons\",\"label\":\"AFC West — Top 10 Rushing Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:62",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-yards-by-afc-west-players-in-the-last-10-seasons\",\"label\":\"AFC West — Top 10 Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:63",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-sacks-in-nfl-history-by-a-player\",\"label\":\"Top 10 Career Sacks (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:64",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-interceptions-by-player-nfl-history\",\"label\":\"Top 10 Career Interceptions (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:65",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-forced-fumbles-in-nfl-history-by-a-player\",\"label\":\"Top 10 Career Forced Fumbles (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:66",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-tackles-all-times\",\"label\":\"Top 10 Career Tackles (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:67",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-regular-season-sacks-over-the-last-10-seasons\",\"label\":\"Top 10 Sacks (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:68",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-interceptions-last-10-years\",\"label\":\"Top 10 Interceptions (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:69",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-forced-fumbles-in-last-10-years\",\"label\":\"Top 10 Forced Fumbles (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:70",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-tackles-in-the-last-10-seasons\",\"label\":\"Top 10 Tackles (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:71",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-touchdown-passes-in-a-single-season\",\"label\":\"Top 10 Single-Season Passing TDs\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:72",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-passing-touchdowns-nfl-history-by-player\",\"label\":\"Top 10 Career Passing TDs (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:73",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-touchdowns-in-a-single-season\",\"label\":\"Top 10 Single-Season Rushing TDs\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:74",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-touchdowns-by-a-player-in-nfl-history\",\"label\":\"Top 10 Career Rushing TDs (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:75",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-touchdowns-single-season-nfl-history\",\"label\":\"Top 10 Single-Season Receiving TDs\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:76",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-touchdowns-by-a-player-in-an-nfl-career\",\"label\":\"Top 10 Career Receiving TDs (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:77",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-yards-from-scrimmage-in-a-season-in-nfl-history\",\"label\":\"Top 10 Single-Season Scrimmage Yards\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:78",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/nfl-yards-from-scrimmage-leaders\",\"label\":\"Top 10 Career Scrimmage Yards (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:79",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receptions-in-an-nfl-season-player\",\"label\":\"Top 10 Single-Season Receptions\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:80",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receptions-by-a-player-in-nfl-history\",\"label\":\"Top 10 Career Receptions (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:81",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/nfl-most-rushing-yards-in-a-season-for-a-qb\",\"label\":\"Top 10 Single-Season QB Rushing Yards\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:82",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-yards-by-a-quarterback-nfl-history\",\"label\":\"Top 10 Career QB Rushing Yards (All-Time)\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:83",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-sacks-by-player-in-a-single-season\",\"label\":\"Top 10 Single-Season Sacks\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:84",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-interceptions-in-a-nfl-season-by-a-player\",\"label\":\"Top 10 Single-Season Interceptions (Player)\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:85",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-sacks-by-a-team-in-one-season\",\"label\":\"Top 10 Single-Season Team Sacks\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:86",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-points-scored-by-a-nfl-team-in-a-season\",\"label\":\"Top 10 Single-Season Team Points Scored\",\"category\":\"Single-Season\"}"
+  },
+  {
+    "key": "nfl:87",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/last-ten-superbowl-winners\",\"label\":\"Last 10 Super Bowl Winners\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:88",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/awards/super-bowl-mvp-award.htm\",\"label\":\"Last 10 Super Bowl MVPs\",\"category\":\"Awards\"}"
+  },
+  {
+    "key": "nfl:89",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/who-has-the-most-passing-tds-in-the-last-10-seasons\",\"label\":\"Last 10 Seasons: Most Passing TDs\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:90",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-rushing-tds-by-a-player-in-the-last-10-seasons\",\"label\":\"Last 10 Seasons: Most Rushing TDs\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:91",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-receiving-tds-in-the-last-10-seasons\",\"label\":\"Last 10 Seasons: Most Receiving TDs\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:92",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+receiving+yards+by+a+running+back+in+the+last+10+seasons\",\"label\":\"Top 10 RB Receiving Yards (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:93",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+passing+yards+by+wide+receiver%2C+tight-end%2C+and+runningback+since+2000\",\"label\":\"Top 10 Non-QB Passing Yards (WR/TE/RB) since 2000\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:94",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-200-yard-rushing-games\",\"label\":\"Top 10 Players with Most 200+ Rushing Yard Games\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:95",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-200-yard-receiving-games\",\"label\":\"Top 10 Players with Most 200+ Receiving Yard Games\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:96",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-400-yard-passing-games\",\"label\":\"Top 10 QBs with Most 400+ Passing Yard Games\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:97",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-career-games-3-rushing-touchdowns\",\"label\":\"Top 10 Players with Most 3+ Rushing TD Games\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:98",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-career-games-with-3-receiving-tds\",\"label\":\"Top 10 Players with Most 3+ Receiving TD Games\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:99",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-games-with-5-touchdown-passes\",\"label\":\"Top 10 QBs with Most 5+ Passing TD Games\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:100",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/R/RodgAa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Aaron Rodgers\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:101",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/B/BradTo00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Tom Brady\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:102",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/B/BreeDr00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Drew Brees\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:103",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/M/MannPe00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Peyton Manning\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:104",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/F/FavrBr00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Brett Favre\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:105",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/R/RivePh00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Philip Rivers\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:106",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/S/StafMa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Matthew Stafford\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:107",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/M/MariDa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Dan Marino\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:108",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/R/RoetBe00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Ben Roethlisberger\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:109",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/R/RyanMa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Matt Ryan\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:110",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/M/MannEl00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Eli Manning\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:111",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/W/WilsRu00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Russell Wilson\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:112",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/T/TarkFr00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Fran Tarkenton\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:113",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/E/ElwaJo00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by John Elway\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:114",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/C/CousKi00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Kirk Cousins\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:115",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/P/PalmCa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Carson Palmer\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:116",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/M/MoonWa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Warren Moon\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:117",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/U/UnitJo00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Johnny Unitas\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:118",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/T/TestVi00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Vinny Testaverde\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:119",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/M/MontJo01/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Joe Montana\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:120",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/F/FlacJo00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Joe Flacco\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:121",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/M/MahoPa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Patrick Mahomes\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:122",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/K/KrieDa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Dave Krieg\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:123",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/C/CarrDe02/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Derek Carr\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:124",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/G/GoffJa00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Jared Goff\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:125",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/J/JurgSo00/touchdowns/passing\",\"label\":\"Top 10 player with the most receiving touchdowns thrown by Sonny Jurgensen\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:126",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/A/AlleJo02/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Josh Allen\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:127",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/J/JackLa00/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Lamar Jackson\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:128",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/B/BurrJo01/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Joe Burrow\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:129",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/H/HerbJu00/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Justin Herbert\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:130",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/P/PresDa01/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Dak Prescott\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:131",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/H/HurtJa00/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Jalen Hurts\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:132",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/L/LawrTr00/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Trevor Lawrence\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:133",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/P/PurdBr00/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Brock Purdy\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:134",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/S/StroC.00/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by C.J. Stroud\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:135",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/L/LoveJo03/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Jordan Love\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:136",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/players/M/MayfBa00/touchdowns/passing\",\"label\":\"Top 10 players with the most receiving touchdowns thrown by Baker Mayfield\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:137",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/fantasy-ppr-leaders-quarterbacks-last-season\",\"label\":\"Most Recent Season Fantasy Football Top 10 QBs (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:138",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/fantasy-ppr-leaders-runningbacks-last-season\",\"label\":\"Most Recent Season Fantasy Football Top 10 RBs (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:139",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/fantasy-ppr-leaders-wide-receivers-last-season\",\"label\":\"Most Recent Season Fantasy Football Top 10 WRs (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:140",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/fantasy-ppr-leaders-wide-tight-ends-last-season\",\"label\":\"Most Recent Season Fantasy Football Top 10 TEs (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:141",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/fantasy-ppr-leaders-rookies-last-season\",\"label\":\"Most Recent Season Fantasy Football Top 10 Rookie Scorers (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:142",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/top-fantasy-scorers-in-a-single-season\",\"label\":\"All-Time Fantasy Football Top 10 Seasons (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:143",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+ppr+points+in+a+single+season%2C+all-time%2C+qb\",\"label\":\"All-Time Fantasy Football Top 10 QB Seasons (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:144",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+ppr+points+in+a+single+season%2C+all-time%2C+rb\",\"label\":\"All-Time Fantasy Football Top 10 RB Seasons (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:145",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+ppr+points+in+a+single+season%2C+all-time%2C+wr\",\"label\":\"All-Time Fantasy Football Top 10 WR Seasons (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:146",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+ppr+points+in+a+single+season%2C+all-time%2C+te\",\"label\":\"All-Time Fantasy Football Top 10 TE Seasons (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:147",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+ppr+points+in+a+single+season%2C+all-time%2C+rookie\",\"label\":\"All-Time Fantasy Football Top 10 Rookie Seasons (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:148",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+ppr+points+in+a+single+game+last+season+top+10\",\"label\":\"Most Recent Season — Top 10 Most Fantasy Points in a Single Game (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:149",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+ppr+points+in+a+single+game+since+1966+top+10\",\"label\":\"Super Bowl Era — Top 10 Most Fantasy Points in a Single Game (PPR)\",\"category\":\"Fantasy\"}"
+  },
+  {
+    "key": "nfl:150",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-points-by-an-nfl-team-last-season\",\"label\":\"Most Recent Season — Top 10 Teams by Points Scored\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:151",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-points-allowed-last-season\",\"label\":\"Most Recent Season — Top 10 Teams by Points Allowed\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:152",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/nfl-teams-most-wins-since-1966\",\"label\":\"Super Bowl Era — Top 10 Teams by Most Wins\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:153",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/teams-with-most-losses-since-1966\",\"label\":\"Super Bowl Era — Top 10 Teams by Most Losses\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:154",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-super-bowl-wins-by-nfl-team\",\"label\":\"Super Bowl Era — Top 10 Teams by Most Super Bowl Wins\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:155",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-super-bowl-losses-by-team\",\"label\":\"Super Bowl Era — Top 10 Teams by Most Super Bowl Losses\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:156",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/which-nfl-teams-have-no-superbowl-wins\",\"label\":\"Teams with No Super Bowl Wins\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:157",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+passing+yards+in+the+playoffs+last+season\",\"label\":\"Most Recent Postseason — Top 10 Players by Passing Yards\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:158",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+rushing+yards+in+the+playoffs+last+season\",\"label\":\"Most Recent Postseason — Top 10 Players by Rushing Yards\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:159",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+receiving+yards+in+the+playoffs+last+season\",\"label\":\"Most Recent Postseason — Top 10 Players by Receiving Yards\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:160",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+total+touchdowns+in+the+playoffs+last+season\",\"label\":\"Most Recent Postseason — Top 10 Players by Total TDs\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:161",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+points+scored+by+a+team+in+the+playoffs+last+season\",\"label\":\"Most Recent Postseason — Top 10 Teams by Points Scored\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:162",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+playoff+wins+by+team+since+1966\",\"label\":\"Super Bowl Era — Top 10 Teams by Playoff Wins\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:163",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+playoff+passing+touchdowns+since+1966\",\"label\":\"Super Bowl Era — Top 10 QBs by Playoff Passing TDs\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:164",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+playoff+passing+yards+since+1966\",\"label\":\"Super Bowl Era — Top 10 QBs by Playoff Passing Yards\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:165",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+playoff+rushing+yards+since+1966\",\"label\":\"Super Bowl Era — Top 10 Players by Playoff Rushing Yards\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:166",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+playoff+receiving+yards+since+1966\",\"label\":\"Super Bowl Era — Top 10 Players by Playoff Receiving Yards\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:167",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+playoff+wins+by+team+in+the+last+10+seasons\",\"label\":\"Last 10 Postseasons — Top 10 Teams by Playoff Wins\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:168",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask?q=most+playoff+wins+by+a+quarterback+in+the+last+10+seasons\",\"label\":\"Last 10 Postseasons — Top 10 QBs by Playoff Wins\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:169",
+    "value": "{\"url\":\"https://www.spotrac.com/nfl/rankings/player/_/year/2025/position/qb/sort/contract_average\",\"label\":\"NFL Money Kings: Top 5 QBs by AAV (2025)\",\"category\":\"Contracts\"}"
+  },
+  {
+    "key": "nfl:170",
+    "value": "{\"url\":\"https://www.spotrac.com/nfl/rankings/player/_/year/2025/position/wr/sort/contract_average\",\"label\":\"NFL Money Kings: Top 5 WRs by AAV (2025)\",\"category\":\"Contracts\"}"
+  },
+  {
+    "key": "nfl:171",
+    "value": "{\"url\":\"https://www.spotrac.com/nfl/rankings/player/_/year/2025/position/rb/sort/contract_average\",\"label\":\"NFL Money Kings: Top 5 RBs by AAV (2025)\",\"category\":\"Contracts\"}"
+  },
+  {
+    "key": "nfl:172",
+    "value": "{\"url\":\"https://www.spotrac.com/nfl/rankings/earnings-career\",\"label\":\"NFL Career Earnings Leaders\",\"category\":\"All-Time\"}"
+  },
+  {
+    "key": "nfl:173",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/players-with-the-most-receiving-yards-last-season\",\"label\":\"Players with the most receiving yards last season\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:174",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/players-with-the-most-rushing-yards-last-season\",\"label\":\"Players with the most rushing yards last season\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:175",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/players-with-the-most-passing-yards-last-season\",\"label\":\"Players with the most passing yards last season\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:176",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-scrimmage-yards-last-10-seasons\",\"label\":\"Top 10 Scrimmage Yard Leaders (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:177",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/least-wins-by-team-last-10-seasons\",\"label\":\"Teams with the Least Wins (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:178",
+    "value": "{\"url\":\"https://www.statmuse.com/nfl/ask/most-wins-by-team-last-10-seasons\",\"label\":\"Teams with the Most Wins (Last 10 Seasons)\",\"category\":\"Recent\"}"
+  },
+  {
+    "key": "nfl:179",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/years/2010/playoffs.htm\",\"label\":\"Guess the Season — Playoff Bracket\",\"category\":\"Playoffs\"}"
+  },
+  {
+    "key": "nfl:180",
+    "value": "{\"url\":\"https://www.pro-football-reference.com/years/2024/playoffs.htm\",\"label\":\"Guess the Season — Playoff Bracket\",\"category\":\"Playoffs\"}"
+  }
+]

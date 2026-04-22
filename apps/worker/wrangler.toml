@@ -4,11 +4,11 @@ compatibility_date = "2024-01-01"
 
 [[kv_namespaces]]
 binding = "REDIRECTS"
-id = "your-kv-namespace-id"  # Replace after: wrangler kv:namespace create REDIRECTS
+id = "8d9e8560388f4140a6819922931f5a48"
 
 [[analytics_engine_datasets]]
-binding = "ANALYTICS"
-dataset = "trivia_scans"
+binding = "page_scans"
+dataset = "DYKB_TRIVIA_ANALYTICS"
 
 [vars]
 ENVIRONMENT = "production"
